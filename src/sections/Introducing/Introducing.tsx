@@ -58,7 +58,7 @@ export default function Introducing() {
           <Label
             title="software developer"
             position="
-            absolute top-0 -left-20
+            absolute top-0 -left-10
             z-50
           "
             rotate={-15}

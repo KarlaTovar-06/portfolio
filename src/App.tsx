@@ -63,7 +63,10 @@ export default function App() {
         animationDuration={0.5}
         staggerDelay={0.12}
       />
-      <main className="overflow-hidden">
+      {/* overflow-x-clip: evita el overflow horizontal SIN romper position: sticky
+          (overflow-hidden en un ancestro convierte a <main> en el scroll container
+          y el sticky de Experiencia dejaría de "pinnearse"). */}
+      <main className="overflow-x-clip">
         <section id="hero">
           <Hero />
         </section>
