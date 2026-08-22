@@ -6,7 +6,7 @@ import { socialLinks } from "@/lib/data/socailLinks";
 
 export default function Introducing() {
   return (
-    <section className="w-full min-h-screen flex justify-center items-center ">
+    <section className="w-full min-h-screen flex justify-center items-center py-10">
       <div className="relative flex flex-col lg:flex-row items-center lg:mx-12 mx-6 my-10 lg:my-0 gap-4">
         {/* Columna izquierda */}
         <div className="relative lg:w-1/3 lg:mx-24 flex flex-col justify-center text-center gap-6 my-8">
@@ -58,7 +58,7 @@ export default function Introducing() {
           <Label
             title="software developer"
             position="
-            absolute top-0 -left-10
+            absolute top-0 -left-5
             z-50
           "
             rotate={-15}

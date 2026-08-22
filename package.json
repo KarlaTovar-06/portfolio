@@ -11,6 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@radix-ui/react-tooltip": "^1.2.16",
     "baseline-browser-mapping": "^2.10.43",
     "caniuse-lite": "^1.0.30001805",
     "class-variance-authority": "^0.7.1",

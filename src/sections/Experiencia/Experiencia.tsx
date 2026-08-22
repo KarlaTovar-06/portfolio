@@ -10,6 +10,7 @@ import {
 
 import SplitText from "../../animations/SplitText/SplitText";
 import ExperienceCard from "@/components/ui/Cards/ExperienceCard";
+import TechIcon from "@/components/ui/TechIcon/TechIcon";
 import { experiences } from "@/lib/data/experience";
 
 export default function Experiencia() {
@@ -43,9 +44,9 @@ export default function Experiencia() {
   const active = experiences[activeIndex];
 
   return (
-    <section id="experience" className="relative w-full">
+    <section className=" w-full min-h-screen py-10">
       {/* Título */}
-      <div className="w-full flex justify-center items-center pt-24 pb-12 px-6">
+      <div className="w-full flex justify-center items-center px-6 m-4">
         <h1 className="text-foreground leading-tight text-center">
           <SplitText
             text="[[My]] Experience"
@@ -107,7 +108,7 @@ export default function Experiencia() {
       {/* ═══════════════════════════════════════════════════════════════════
           Versión móvil — sin pinning, cards apiladas con info full.
           ═══════════════════════════════════════════════════════════════════ */}
-      <div className="lg:hidden block w-full px-6 pt-12 pb-24">
+      <div className="lg:hidden block w-full px-6 py-8">
         <div className="flex flex-col gap-8 max-w-2xl mx-auto">
           {experiences.map((exp) => (
             <div
@@ -132,12 +133,7 @@ export default function Experiencia() {
                 </p>
                 <div className="flex flex-wrap gap-2 pt-2">
                   {exp.techIcons.map((icon) => (
-                    <img
-                      key={icon}
-                      src={icon}
-                      alt=""
-                      className="size-7 rounded-md object-cover"
-                    />
+                    <TechIcon key={icon} src={icon} className="size-10" />
                   ))}
                 </div>
               </div>

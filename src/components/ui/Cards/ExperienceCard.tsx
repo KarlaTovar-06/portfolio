@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 
 import { cn } from "@/lib/utils";
+import TechIcon from "../TechIcon/TechIcon";
 import type { Experience } from "@/lib/data/experience";
 
 interface ExperienceCardProps {
@@ -109,29 +110,27 @@ export default function ExperienceCard({
             {data.description}
           </p>
 
-          <ul className="flex flex-col gap-1.5 pl-1">
-            {data.bullets.map((bullet, i) => (
-              <li
-                key={i}
-                className="flex gap-2 text-xs md:text-sm text-foreground/70 leading-relaxed"
-              >
-                <span className="mt-1.5 size-1.5 rounded-full bg-cyan flex-shrink-0" />
-                <span>{bullet}</span>
-              </li>
-            ))}
-          </ul>
+          {data.bullets.length > 0 && (
+            <ul className="flex flex-col gap-1.5 pl-1">
+              {data.bullets.map((bullet, i) => (
+                <li
+                  key={i}
+                  className="flex gap-2 text-xs md:text-sm text-foreground/70 leading-relaxed"
+                >
+                  <span className="mt-1.5 size-1.5 rounded-full bg-cyan flex-shrink-0" />
+                  <span>{bullet}</span>
+                </li>
+              ))}
+            </ul>
+          )}
 
-          <footer className="flex flex-wrap gap-2 pt-2 border-t border-gris2/60">
-            {data.techIcons.map((icon) => (
-              <img
-                key={icon}
-                src={icon}
-                alt=""
-                title={icon.split("/").pop()?.replace(".webp", "")}
-                className="size-7 md:size-8 rounded-md object-cover"
-              />
-            ))}
-          </footer>
+          {data.techIcons.length > 0 && (
+            <footer className="flex flex-wrap gap-2 pt-2 border-t border-gris2/60">
+              {data.techIcons.map((icon) => (
+                <TechIcon key={icon} src={icon} className="size-7 md:size-8" />
+              ))}
+            </footer>
+          )}
         </motion.div>
       </motion.div>
     </motion.div>

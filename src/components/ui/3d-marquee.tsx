@@ -2,7 +2,11 @@
 
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
-import { Tooltip } from "./Tooltip/Tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "./tooltip";
 
 export const ThreeDMarquee = ({
   images,
@@ -78,26 +82,31 @@ export const ThreeDMarquee = ({
                     }}
                   >
                     {item.src && (
-                      <Tooltip text={item.tooltip}>
-                        <>
-                          <GridLineHorizontal
-                            className="-top-4"
-                            offset="20px"
-                          />
-                          <motion.img
-                            whileHover={{ y: -10 }}
-                            transition={{
-                              duration: 0.3,
-                              ease: "easeInOut",
-                            }}
-                            src={item.src}
-                            alt={item.tooltip || "Skill icon"}
-                            className="aspect-[970/700] rounded-lg object-contain ring ring-gray-950/5 hover:shadow-2xl"
-                            width={imageSize}
-                            height={imageSize}
-                          />
-                        </>
-                      </Tooltip>
+                      <>
+                        <GridLineHorizontal
+                          className="-top-4"
+                          offset="20px"
+                        />
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <motion.img
+                              whileHover={{ y: -10 }}
+                              transition={{
+                                duration: 0.3,
+                                ease: "easeInOut",
+                              }}
+                              src={item.src}
+                              alt={item.tooltip || "Skill icon"}
+                              className="aspect-[970/700] rounded-lg object-contain ring ring-gray-950/5 hover:shadow-2xl"
+                              width={imageSize}
+                              height={imageSize}
+                            />
+                          </TooltipTrigger>
+                          <TooltipContent side="bottom" sideOffset={6}>
+                            {item.tooltip}
+                          </TooltipContent>
+                        </Tooltip>
+                      </>
                     )}
                   </div>
                 ))}
