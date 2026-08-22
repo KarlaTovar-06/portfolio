@@ -5,6 +5,7 @@ import Logros from "./sections/Logros/Logros";
 import Skills from "./sections/Skilss/Skills";
 import BubbleMenu from "./components/common/BubbleMenu";
 import { ThemeProvider } from "./lib/theme";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const items = [
   {
@@ -54,7 +55,8 @@ const items = [
 export default function App() {
   return (
     <ThemeProvider>
-      <BubbleMenu
+      <TooltipProvider>
+        <BubbleMenu
         logo={<span style={{ fontWeight: 700 }}>RB</span>}
         items={items}
         menuAriaLabel="Toggle navigation"
@@ -63,7 +65,10 @@ export default function App() {
         animationDuration={0.5}
         staggerDelay={0.12}
       />
-      <main className="overflow-hidden">
+      {/* overflow-x-clip: evita el overflow horizontal SIN romper position: sticky
+          (overflow-hidden en un ancestro convierte a <main> en el scroll container
+          y el sticky de Experiencia dejaría de "pinnearse"). */}
+      <main className="overflow-x-clip gap-10">
         <section id="hero">
           <Hero />
         </section>
@@ -78,6 +83,7 @@ export default function App() {
           <Skills />
         </section>
       </main>
+      </TooltipProvider>
     </ThemeProvider>
   );
 }
