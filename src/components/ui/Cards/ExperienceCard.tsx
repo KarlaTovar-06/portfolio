@@ -37,8 +37,8 @@ export default function ExperienceCard({
       className={cn(
         "relative border rounded-3xl overflow-hidden my-3",
         isActive
-          ? "bg-card/5 backdrop-blur-sm border border-white/20 shadow-lg"
-          : "bg-card border-gris2/40 backdrop-blur-sm w-fit"
+          ? "bg-card/5 backdrop-blur-sm border border-gris2/20 shadow-lg"
+          : "bg-card border-gris2/20 backdrop-blur-sm w-fit"
       )}
     >
       {/* Dots decorativos (estilo ventana) — solo visibles cuando es la card activa. */}

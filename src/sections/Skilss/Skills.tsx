@@ -56,39 +56,6 @@ export default function Skills() {
 
         <div className="w-full h-full mx-auto flex flex-col lg:flex-row gap-32 my-20 lg:my-0">
 
-          {/* ── Columna izquierda ── */}
-          <div className="w-auto lg:flex-1 flex flex-col justify-center gap-12">
-            {/* Ejemplo: borde por defecto, fondo personalizado */}
-            <DecorativeCard
-              contentClassName="flex flex-col items-start gap-6 px-6"
-            >
-              <ImagePreview
-                image="/assets/image/unam-biblioteca.jpg"
-                title="Biblioteca UNAM"
-                description="Click para ver imagen completa"
-              />
-              <ImagePreview
-                image="/assets/image/unam-biblioteca.jpg"
-                title="Biblioteca UNAM"
-                description="Click para ver imagen completa"
-              />
-              <ImagePreview
-                image="/assets/image/unam-biblioteca.jpg"
-                title="Biblioteca UNAM"
-                description="Click para ver imagen completa"
-              />
-              <ImagePreview
-                image="/assets/image/unam-biblioteca.jpg"
-                title="Biblioteca UNAM"
-                description="Click para ver imagen completa"
-              />
-              <ImagePreview
-                image="/assets/image/unam-biblioteca.jpg"
-                title="Biblioteca UNAM"
-                description="Click para ver imagen completa"
-              />
-            </DecorativeCard>
-          </div>
 
           {/* ── Columna derecha ── */}
           <div className="w-full lg:flex-1 flex flex-col justify-center gap-6">

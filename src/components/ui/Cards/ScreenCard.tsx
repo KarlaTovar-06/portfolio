@@ -57,9 +57,9 @@ export default function DecorativeCard({
   return (
     <div
       className={`
-        relative p-6 w-full h-auto
+        relative p-6 min-h-96
         flex flex-col items-center justify-center
-        border rounded-2xl
+        border rounded-2xl shadow-lg
         ${borderColor}
         ${backgroundColor}
         ${overflowClass}

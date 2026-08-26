@@ -3,6 +3,7 @@ import Introducing from "./sections/Introducing/Introducing";
 import Experiencia from "./sections/Experiencia/Experiencia";
 import FeaturedWork from "./sections/FeaturedWork/FeaturedWork";
 import Skills from "./sections/Skilss/Skills";
+import Estudies from "./sections/Estudies/Estudies";
 import BubbleMenu from "./components/common/BubbleMenu";
 import { ThemeProvider } from "./lib/theme";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -44,6 +45,13 @@ const items = [
     hoverStyles: { bgColor: "#f59e0b", textColor: "#ffffff" },
   },
   {
+    label: "estudies",
+    href: "#estudies",
+    ariaLabel: "Estudies",
+    rotation: -5,
+    hoverStyles: { bgColor: "#00C2AB", textColor: "#ffffff" },
+  },
+  {
     label: "contact",
     href: "#",
     ariaLabel: "Contact",
@@ -77,6 +85,7 @@ export default function App() {
 
           <FeaturedWork />
 
+          <Estudies />
           <Skills />
         </main>
       </TooltipProvider>
