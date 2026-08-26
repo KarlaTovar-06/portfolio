@@ -93,7 +93,7 @@ export default function Experiencia() {
   const active = experiences[activeIndex];
 
   return (
-    <section id="experience" className=" w-full min-h-auto py-10">
+    <section id="experience" className=" w-full min-h-screen flex flex-col justify-center md:py-10">
       {/* Título */}
       <div className="w-full flex justify-center items-center px-6 m-4">
         <h1 className="text-foreground leading-tight text-center">
