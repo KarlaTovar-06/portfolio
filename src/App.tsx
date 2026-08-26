@@ -2,7 +2,6 @@ import Hero from "./sections/Hero/Hero";
 import Introducing from "./sections/Introducing/Introducing";
 import Experiencia from "./sections/Experiencia/Experiencia";
 import FeaturedWork from "./sections/FeaturedWork/FeaturedWork";
-import Skills from "./sections/Skilss/Skills";
 import Estudies from "./sections/Estudies/Estudies";
 import BubbleMenu from "./components/common/BubbleMenu";
 import { ThemeProvider } from "./lib/theme";
@@ -86,7 +85,6 @@ export default function App() {
           <FeaturedWork />
 
           <Estudies />
-          <Skills />
         </main>
       </TooltipProvider>
     </ThemeProvider>

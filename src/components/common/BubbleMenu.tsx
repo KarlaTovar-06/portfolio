@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 
 import ThemeToggle from "@/components/common/ThemeToggle";
+import { useHideOnScroll } from "@/hooks/useHideOnScroll";
 
 type MenuItem = {
   label: string;
@@ -88,6 +89,10 @@ export default function BubbleMenu({
   const backdropRef = useRef<HTMLDivElement>(null);
   const bubblesRef = useRef<HTMLAnchorElement[]>([]);
   const labelRefs = useRef<HTMLSpanElement[]>([]);
+
+  // Hide the menu on scroll down, show on scroll up. Disabled while open
+  // so the toggle button stays reachable.
+  const navRef = useHideOnScroll({ enabled: !isMenuOpen });
 
   const menuItems = items?.length ? items : DEFAULT_ITEMS;
 
@@ -241,9 +246,9 @@ export default function BubbleMenu({
             overflow: visible;
           }
           .bubble-menu-items .pill-link {
-            font-size: clamp(1.2rem, 3vw, 4rem);
-            padding: clamp(1rem, 2vw, 2rem) 0;
-            min-height: 80px !important;
+            font-size: clamp(1rem, 2.5vw, 3rem);
+            padding: clamp(0.75rem, 1.5vw, 1.5rem) 0;
+            min-height: 60px !important;
           }
           .bubble-menu-items .pill-link:hover {
             transform: scale(1.06);
@@ -273,6 +278,7 @@ export default function BubbleMenu({
       )}
 
       <nav
+        ref={navRef}
         className={containerClassName}
         style={style}
         aria-label="Main navigation"
@@ -285,7 +291,7 @@ export default function BubbleMenu({
             "shadow-[0_4px_16px_rgba(0,0,0,0.12)]",
             "pointer-events-auto",
             "h-12 md:h-14",
-            "px-2",
+            "md:px-2 px-0.5",
             "border border-stone-200/20",
             "gap-2",
             "will-change-transform",

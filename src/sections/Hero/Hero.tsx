@@ -14,10 +14,15 @@ import {
 
 export default function Hero() {
   return (
-    <section id="hero" className="w-full max-w-6xl md:min-h-screen h-full mx-auto lg:my-0 my-12 flex justify-center items-center overflow-hidden">
+    <section id="hero" className="w-full max-w-6xl min-h-screen mx-auto flex justify-center items-center overflow-hidden">
       <div className="flex flex-col justify-center items-center">
-        <div className="relative w-[520px] h-[560px] origin-bottom scale-[0.58] sm:scale-75 lg:scale-100">
-          <FolderIcon className="absolute bottom-0 left-1/2 -translate-x-1/2 z-0 w-full h-auto dark:invert" />
+        {/* Wrapper has the visual size of the scaled content so the flex
+            centering actually centers what the user sees (not the 520x560
+            layout box, which has empty space at the top because of
+            origin-bottom + scale). */}
+        <div className="relative w-[302px] h-[325px] sm:w-[390px] sm:h-[420px] lg:w-[520px] lg:h-[560px]">
+          <div className="absolute -left-[109px] -top-[235px] sm:-left-[65px] sm:-top-[140px] lg:left-0 lg:top-0 w-[520px] h-[560px] origin-bottom scale-[0.58] sm:scale-75 lg:scale-100">
+            <FolderIcon className="absolute bottom-0 left-1/2 -translate-x-1/2 z-0 w-full h-auto dark:invert" />
 
           <StarTripleIcon className="absolute -left-10 top-20 z-[5] rotate-[-14deg] dark:invert" />
           <StarPinkIcon
@@ -98,6 +103,7 @@ export default function Hero() {
           />
 
           <GlassCard className="absolute bottom-2 left-1/2 -translate-x-1/2 z-30 w-full h-auto" />
+          </div>
         </div>
 
         <Label
