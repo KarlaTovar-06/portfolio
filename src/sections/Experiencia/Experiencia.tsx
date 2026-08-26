@@ -12,6 +12,7 @@ import SplitText from "../../animations/SplitText/SplitText";
 import ExperienceCard from "@/components/ui/Cards/ExperienceCard";
 import TechIcon from "@/components/ui/TechIcon/TechIcon";
 import { experiences } from "@/lib/data/experience";
+import LabelIcon from "@/components/ui/Label/LabelIcon";
 
 export default function Experiencia() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -44,7 +45,7 @@ export default function Experiencia() {
   const active = experiences[activeIndex];
 
   return (
-    <section className=" w-full min-h-screen py-10">
+    <section id="experince" className=" w-full min-h-screen py-10">
       {/* Título */}
       <div className="w-full flex justify-center items-center px-6 m-4">
         <h1 className="text-foreground leading-tight text-center">
@@ -70,12 +71,12 @@ export default function Experiencia() {
       <div
         ref={sectionRef}
         className="hidden lg:block relative"
-        style={{ height: `${cardLength * 100}vh` }}
+        style={{ height: `${cardLength * 80}vh` }}
       >
         <div className="sticky top-0 h-screen flex items-center overflow-hidden">
-          <div className="mx-auto w-full max-w-7xl flex items-center justify-center gap-10 px-10">
+          <div className="mx-auto w-auto max-w-7xl flex items-center justify-between gap-20">
             {/* ── Columna izquierda: cards colapsables ─────────────────── */}
-            <div className="flex-1 max-w-xl flex flex-col justify-center">
+            <div className="flex-1 max-w-3xl flex flex-col justify-center">
               {experiences.map((exp, i) => (
                 <ExperienceCard
                   key={exp.id}
@@ -87,19 +88,18 @@ export default function Experiencia() {
 
             {/* ── Columna derecha: mac.webp con info activa ────────────── */}
             <div className="relative w-[480px] shrink-0">
-                <AnimatePresence mode="wait">
-                  <motion.img
-                    key={active.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                    src={active.image}
-                    alt={active.company}
-                    className="w-full h-full object-cover"
-                  />
-                </AnimatePresence>
-
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={active.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                  src={active.image}
+                  alt={active.company.text}
+                  className="w-full h-full object-cover"
+                />
+              </AnimatePresence>
             </div>
           </div>
         </div>
@@ -127,7 +127,11 @@ export default function Experiencia() {
                 <h4 className="text-lg font-bold text-foreground">
                   {exp.title}
                 </h4>
-                <p className="text-sm text-rosa font-medium">{exp.company}</p>
+                <LabelIcon
+                  title={exp.company.text}
+                  color={exp.company.color}
+                  icon={exp.company.icon}
+                />
                 <p className="text-sm text-foreground/80 leading-relaxed">
                   {exp.description}
                 </p>

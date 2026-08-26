@@ -41,7 +41,7 @@ export default function Skills() {
   ];
 
   return (
-    <section className="w-full min-h-screen flex flex-col justify-center items-center my-12 overflow-hidden px-5">
+    <section id="skills" className="w-full min-h-screen flex flex-col justify-center items-center my-12 overflow-hidden px-5">
       <div className="w-full h-full flex flex-col justify-center items-start px-4 sm:px-6 lg:px-24 gap-6">
         <h1 className="text-foreground leading-tight py-10">
           <SplitText

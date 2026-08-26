@@ -3,7 +3,7 @@ import SplitText from "../../animations/SplitText/SplitText";
 
 export default function Logros() {
   return (
-    <section className="w-full min-h-screen flex justify-center items-center my-12 overflow-hidden px-5">
+    <section id="logros" className="w-full min-h-screen flex justify-center items-center my-12 overflow-hidden px-5">
       <div className="w-full h-full flex flex-col lg:flex-row items-center lg:mx-12 mx-6 my-10 lg:my-0 gap-4">
         <div className="w-full flex flex-col justify-center mx-12 gap-6">
           <div className="space-y-4">

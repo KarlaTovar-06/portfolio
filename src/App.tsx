@@ -57,32 +57,28 @@ export default function App() {
     <ThemeProvider>
       <TooltipProvider>
         <BubbleMenu
-        logo={<span style={{ fontWeight: 700 }}>RB</span>}
-        items={items}
-        menuAriaLabel="Toggle navigation"
-        useFixedPosition={true}
-        animationEase="back.out(1.5)"
-        animationDuration={0.5}
-        staggerDelay={0.12}
-      />
-      {/* overflow-x-clip: evita el overflow horizontal SIN romper position: sticky
+          logo={<span style={{ fontWeight: 700 }}>RB</span>}
+          items={items}
+          menuAriaLabel="Toggle navigation"
+          useFixedPosition={true}
+          animationEase="back.out(1.5)"
+          animationDuration={0.5}
+          staggerDelay={0.12}
+        />
+        {/* overflow-x-clip: evita el overflow horizontal SIN romper position: sticky
           (overflow-hidden en un ancestro convierte a <main> en el scroll container
           y el sticky de Experiencia dejaría de "pinnearse"). */}
-      <main className="overflow-x-clip gap-10">
-        <section id="hero">
+        <main className="overflow-x-clip gap-10">
           <Hero />
-        </section>
-        <section id="introducing">
+
           <Introducing />
-        </section>
-        <section id="experience">
+
           <Experiencia />
-        </section>
-        <Logros />
-        <section id="skills">
+
+          <Logros />
+
           <Skills />
-        </section>
-      </main>
+        </main>
       </TooltipProvider>
     </ThemeProvider>
   );
