@@ -1,13 +1,8 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import {
-  AppWindow,
-  ArrowUpRight,
-  Globe,
-  Mail,
-  Sparkles,
-} from "lucide-react";
+import { AppWindow, ArrowUpRight, Globe, Mail, Sparkles } from "lucide-react";
 import SplitText from "../../animations/SplitText/SplitText";
+import { StarPinkIcon, StarSilverIcon } from "@/components/common/icons";
 
 type LinkItem = { name: string; url: string };
 
@@ -60,7 +55,9 @@ function useLinkMetadata(url: string) {
 
     setLoading(true);
     fetch(
-      `https://api.microlink.io/?url=${encodeURIComponent(url)}&screenshot=true&meta=true`
+      `https://api.microlink.io/?url=${encodeURIComponent(
+        url
+      )}&screenshot=true&meta=true`
     )
       .then((res) => res.json())
       .then((json) => {
@@ -151,7 +148,6 @@ function LinkPreviewCard({ url }: { url: string }) {
           {hostname}
         </p>
       </div>
-
     </motion.a>
   );
 }
@@ -176,10 +172,19 @@ function BentoWidget({
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      whileInView={{ opacity: 1, scale: 1, y: 0 }}
+      whileHover={{
+        scale: 1.0,
+        y: -6,
+      }}
+      whileTap={{
+        scale: 0.95,
+      }}
+      transition={{
+        duration: 0.35,
+        ease: "easeOut",
+      }}
       viewport={{ once: false, margin: "-50px" }}
-      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       className={`rounded-3xl border border-gris2/20 bg-card/30 backdrop-blur-sm p-4 flex flex-col gap-3 shadow-lg ${className}`}
     >
       <div className="flex items-center justify-between">
@@ -208,21 +213,19 @@ export default function FeaturedWork() {
   return (
     <section
       id="featured-work"
-      className="w-full min-h-screen flex flex-col justify-center items-center py-16 px-6"
+      className="relative w-full min-h-screen flex flex-col justify-center items-center py-16 px-6"
     >
       <div className="w-full max-w-7xl flex flex-col gap-12">
-
-          <h1 className="text-foreground leading-tight">
-            <SplitText
-              text="Featured [[Work]]"
-              className="text-2xl md:text-4xl"
-              delay={0.3}
-              staggerChildren={0.03}
-              duration={0.6}
-              initialY={50}
-            />
-          </h1>
-
+        <h1 className="text-foreground leading-tight">
+          <SplitText
+            text="Featured [[Work]]"
+            className="text-2xl md:text-4xl"
+            delay={0.3}
+            staggerChildren={0.03}
+            duration={0.6}
+            initialY={50}
+          />
+        </h1>
 
         <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4">
           {/* Widget 1 — Websites (col-span-2, row-span-2) */}
@@ -231,7 +234,7 @@ export default function FeaturedWork() {
             label="Websites"
             count={websites.length}
             accent="text-rosa"
-            className="md:col-span-2 md:row-span-2"
+            className="md:col-span-2 md:row-span-2 z-20"
           >
             <div className="flex flex-wrap gap-2 h-full">
               {websites.map((site) => (
@@ -282,20 +285,45 @@ export default function FeaturedWork() {
           {/* Widget 4 — Contact CTA (col-span-1, row 2) */}
           <motion.a
             href="#contact"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.9, y: 10 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            whileHover={{
+              scale: 1.0,
+              y: -6,
+            }}
+            whileTap={{
+              scale: 0.95,
+            }}
+            transition={{
+              duration: 0.35,
+              ease: "easeOut",
+            }}
             viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="md:col-span-1 rounded-3xl border border-gris2/20 bg-gradient-to-br from-morado to-rosa p-4 flex flex-col items-center justify-center gap-2 hover:border-morado transition-colors group"
+            className="md:col-span-1 rounded-3xl border border-gris2/20 bg-gradient-to-br from-rosa to-rosa/60 p-6 flex flex-col backdrop-blur-sm items-start justify-start gap-2 hover:border-rosa transition-colors group"
           >
-            <Mail className="size-6 text-morado group-hover:scale-110 transition-transform" />
-            <p className="text-sm font-bold text-foreground">Let&apos;s talk</p>
-            <p className="text-[10px] text-muted-foreground flex items-center gap-1">
+            <h2 className="text-xl md:text-4xl font-bold text-white">
+              Let&apos;s talk
+            </h2>
+            <p className="text-sm md:text-md text-white flex items-center gap-1">
               Go to contact <ArrowUpRight className="size-3" />
             </p>
           </motion.a>
         </div>
       </div>
+      <img
+        className="absolute left-0 translate-y-full w-80 object-contain -scale-x-100 md:block hidden"
+        src="/assets/littledog.webp"
+        alt="perrito"
+      />
+
+      <StarPinkIcon
+        className="absolute left-1/3 -translate-y-56 z-50 rotate-[12deg] md:block hidden"
+        aria-hidden="true"
+      />
+      <StarSilverIcon
+        className="absolute right-1/3 translate-y-16 z-50 rotate-[-8deg] md:block hidden"
+        aria-hidden="true"
+      />
     </section>
   );
 }

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 220" width="320" height="220">
+  <defs>
+    <linearGradient id="bgLic" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6FBF00"/>
+      <stop offset="100%" stop-color="#4d8500"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="220" fill="url(#bgLic)"/>
+  <g transform="translate(160 115)">
+    <!-- Graduation cap top -->
+    <polygon points="0,-60 80,-25 0,10 -80,-25" fill="#1f1f1f"/>
+    <polygon points="0,-50 60,-25 0,0 -60,-25" fill="#3d3d3d"/>
+    <!-- Cap base -->
+    <path d="M -45 -15 L -45 20 Q -45 30 -35 30 L 35 30 Q 45 30 45 20 L 45 -15 Z" fill="#1f1f1f"/>
+    <!-- Tassel -->
+    <line x1="60" y1="-22" x2="78" y2="38" stroke="#fbbf24" stroke-width="2"/>
+    <circle cx="78" cy="42" r="6" fill="#fbbf24"/>
+    <!-- Highlight -->
+    <line x1="-30" y1="-25" x2="30" y2="-25" stroke="#fbbf24" stroke-width="1" opacity="0.5"/>
+  </g>
+  <text x="160" y="195" text-anchor="middle" font-family="ui-sans-serif, system-ui" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="3">LICENCIATURA</text>
+</svg>

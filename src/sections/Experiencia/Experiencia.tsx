@@ -1,6 +1,6 @@
 // Experiencia.tsx
 
-import { useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   AnimatePresence,
   motion,
@@ -17,6 +17,12 @@ import LabelIcon from "@/components/ui/Label/LabelIcon";
 export default function Experiencia() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+
+  // ── Mobile: refs para el stepper de dots + scroll horizontal ─────────────
+  const mobileScrollRef = useRef<HTMLDivElement>(null);
+  // Mantiene el activeIndex del mobile SEPARADO del desktop
+  // para que ambos modos tengan su propio estado sin cruzarse.
+  const [mobileActiveIndex, setMobileActiveIndex] = useState(0);
 
   const cardLength = experiences.length;
 
@@ -42,10 +48,52 @@ export default function Experiencia() {
     setActiveIndex(closest);
   });
 
+  // ── Mobile: detecta cuál card está más centrada en el viewport ──────────
+  // Calcula el centro del contenedor scrolleable y compara contra el centro
+  // de cada card (medido con offsetLeft + offsetWidth/2).
+  const detectActiveCard = useCallback(() => {
+    const container = mobileScrollRef.current;
+    if (!container) return;
+    const center = container.scrollLeft + container.clientWidth / 2;
+    const cards = container.querySelectorAll<HTMLElement>("[data-card]");
+    let closestIndex = 0;
+    let closestDistance = Infinity;
+    cards.forEach((card, i) => {
+      const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+      const distance = Math.abs(center - cardCenter);
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestIndex = i;
+      }
+    });
+    setMobileActiveIndex(closestIndex);
+  }, []);
+
+  // Inicializa el activeIndex después del primer paint (cuando ya conocemos
+  // los anchos reales) y escucha el scroll del contenedor.
+  useEffect(() => {
+    detectActiveCard();
+    const container = mobileScrollRef.current;
+    if (!container) return;
+    container.addEventListener("scroll", detectActiveCard, { passive: true });
+    return () => container.removeEventListener("scroll", detectActiveCard);
+  }, [detectActiveCard]);
+
+  // ── Mobile: click en un dot → scroll suave hacia la card ──────────────
+  const scrollToCard = (index: number) => {
+    const container = mobileScrollRef.current;
+    if (!container) return;
+    const card = container.querySelectorAll<HTMLElement>("[data-card]")[index];
+    if (!card) return;
+    const targetScroll =
+      card.offsetLeft + card.offsetWidth / 2 - container.clientWidth / 2;
+    container.scrollTo({ left: targetScroll, behavior: "smooth" });
+  };
+
   const active = experiences[activeIndex];
 
   return (
-    <section id="experince" className=" w-full min-h-screen py-10">
+    <section id="experince" className=" w-full min-h-auto py-10">
       {/* Título */}
       <div className="w-full flex justify-center items-center px-6 m-4">
         <h1 className="text-foreground leading-tight text-center">
@@ -121,7 +169,7 @@ export default function Experiencia() {
               ))}
             </div>
 
-            {/* ── Columna derecha: mac.webp con info activa ────────────── */}
+            {/* ── Columna derecha ────────────── */}
             <div className="relative w-[480px] shrink-0">
               <AnimatePresence mode="wait">
                 <motion.img
@@ -141,43 +189,89 @@ export default function Experiencia() {
       </div>
 
       {/* ═══════════════════════════════════════════════════════════════════
-          Versión móvil — sin pinning, cards apiladas con info full.
-          ═══════════════════════════════════════════════════════════════════ */}
-      <div className="lg:hidden block w-full px-6 py-8">
-        <div className="flex flex-col gap-8 max-w-2xl mx-auto">
-          {experiences.map((exp) => (
-            <div
-              key={exp.id}
-              className="relative border border-gris2 rounded-2xl p-6 bg-card"
-            >
-              <div className="absolute top-4 left-5 flex gap-2">
-                <span className="size-2.5 rounded-full bg-rosa" />
-                <span className="size-2.5 rounded-full bg-verde" />
-                <span className="size-2.5 rounded-full bg-cyan" />
-              </div>
-              <div className="mt-6 flex flex-col gap-3">
-                <span className="text-xs uppercase tracking-wider text-muted-foreground">
-                  {exp.period}
-                </span>
-                <h4 className="text-lg font-bold text-foreground">
-                  {exp.title}
-                </h4>
-                <LabelIcon
-                  title={exp.company.text}
-                  color={exp.company.color}
-                  icon={exp.company.icon}
+    Versión móvil — sin pinning, cards apiladas con info full.
+    Estructura:
+      • Stepper de dots FIJO arriba (no scrollea con las cards).
+      • Contenedor de scroll horizontal SOLO para las cards.
+    ═══════════════════════════════════════════════════════════════════ */}
+      <div className="lg:hidden block w-full py-8">
+        {/* ── Stepper fijo: línea rosa horizontal + dots reactivos ───── */}
+        <div className="relative w-full px-12 py-5">
+          {/* Línea rosa horizontal — atraviesa todo el ancho */}
+          <div className="absolute top-1/2 left-12 right-12 h-[2px] bg-rosa/50 rounded-full -translate-y-1/2" />
+
+          {/* Dots: uno por experiencia, distribuidos en el ancho */}
+          <div className="relative flex justify-between items-center">
+            {experiences.map((exp, i) => {
+              const isActive = mobileActiveIndex === i;
+              return (
+                <motion.button
+                  key={exp.id}
+                  type="button"
+                  onClick={() => scrollToCard(i)}
+                  aria-label={`Ir a ${exp.company.text}`}
+                  aria-current={isActive ? "step" : undefined}
+                  animate={{
+                    scale: isActive ? 1.6 : 1,
+                    opacity: isActive ? 1 : 0.4,
+                  }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 22,
+                  }}
+                  className="block size-2.5 rounded-full bg-rosa shrink-0 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-rosa/60"
                 />
-                <p className="text-sm text-foreground/80 leading-relaxed">
-                  {exp.description}
-                </p>
-                <div className="flex flex-wrap gap-2 pt-2">
-                  {exp.techIcons.map((icon) => (
-                    <TechIcon key={icon} src={icon} className="size-10" />
-                  ))}
+              );
+            })}
+          </div>
+        </div>
+
+        {/* ── Scroller: solo este contenedor hace overflow-x-auto ───── */}
+        <div
+          ref={mobileScrollRef}
+          className="w-full overflow-x-auto overflow-y-hidden snap-x snap-mandatory"
+          style={{ scrollBehavior: "smooth" }}
+        >
+          <div className="flex flex-nowrap gap-6 w-max px-6 py-4">
+            {experiences.map((exp) => (
+              <div
+                key={exp.id}
+                data-card
+                className="snap-center shrink-0 w-96"
+              >
+                {/* Card */}
+                <div className="relative w-full h-80 border border-gris2 rounded-2xl p-6 bg-card shadow-md">
+                  <div className="absolute top-4 left-5 flex gap-2">
+                    <span className="size-2.5 rounded-full bg-rosa" />
+                    <span className="size-2.5 rounded-full bg-verde" />
+                    <span className="size-2.5 rounded-full bg-cyan" />
+                  </div>
+                  <div className="mt-6 flex flex-col gap-3">
+                    <span className="text-xs uppercase tracking-wider text-muted-foreground">
+                      {exp.period}
+                    </span>
+                    <h4 className="text-lg font-bold text-foreground">
+                      {exp.title}
+                    </h4>
+                    <LabelIcon
+                      title={exp.company.text}
+                      color={exp.company.color}
+                      icon={exp.company.icon}
+                    />
+                    <p className="text-sm text-foreground/80 leading-relaxed">
+                      {exp.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2 pt-2">
+                      {exp.techIcons.map((icon) => (
+                        <TechIcon key={icon} src={icon} className="size-10" />
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>
