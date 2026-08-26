@@ -1,15 +1,24 @@
-/**
- * Mock data — Experiencia profesional.
- *
- * Las imágenes viven en `/public/assets/timeline/` y los iconos de
- * tecnologías en `/public/icons/`. Mantén los paths sincronizados con
- * esos directorios.
- */
+import type { LucideIcon } from "lucide-react";
+import {
+  Megaphone,
+  Flower,
+  Code2,
+  LockKeyhole,
+  GraduationCap,
+} from "lucide-react";
+
+export type LabelColor = "rosa" | "verde" | "cyan" | "amarillo" | "morado";
+
+export interface CompanyLabel {
+  text: string;
+  color: LabelColor;
+  icon?: LucideIcon;
+}
 
 export interface Experience {
   id: string;
   title: string;
-  company: string;
+  company: CompanyLabel;
   period: string;
   description: string;
   bullets: string[];
@@ -21,7 +30,7 @@ export const experiences: Experience[] = [
   {
     id: "rubidex",
     title: "Frontend & Mobile Developer",
-    company: "Rubidex",
+    company: { text: "Rubidex", color: "amarillo", icon: LockKeyhole },
     period: "2025 — Present",
     description:
       "Develop web and mobile products across multiple projects within the company.",
@@ -45,7 +54,7 @@ export const experiences: Experience[] = [
   {
     id: "kachi",
     title: "Co-Founder & Product Lead",
-    company: "Kachi",
+    company: { text: "Kachi", color: "rosa", icon: Flower },
     period: "2024 — 2025",
     description:
       "Co-founded an educational platform focused on teaching and preserving indigenous Mexican languages through interactive experiences.",
@@ -68,7 +77,7 @@ export const experiences: Experience[] = [
   {
     id: "leap",
     title: "Full Stack Developer",
-    company: "LEAP Interactive",
+    company: { text: "LEAP Interactive", color: "verde", icon: Megaphone },
     period: "2024 — 2025",
     description:
       "Contributed to the development and modernization of enterprise web platforms.",
@@ -89,8 +98,8 @@ export const experiences: Experience[] = [
   },
   {
     id: "competitions",
-    title: "Innovation & Social Impact Competitions",
-    company: "Hackathons & Challenges",
+    title: "Innovation Competitions",
+    company: { text: "Hackathons", color: "cyan", icon: LockKeyhole },
     period: "2024",
     description:
       "Participated in technology and entrepreneurship competitions focused on developing solutions for real-world challenges.",
@@ -110,7 +119,7 @@ export const experiences: Experience[] = [
   {
     id: "education",
     title: "Applied Mathematics & Computer Science",
-    company: "UNAM – FES Acatlán",
+    company: { text: "UNAM", color: "morado", icon: GraduationCap },
     period: "2020 — 2024",
     description:
       "Built a strong foundation in programming, algorithms, mathematical modeling, and computational problem-solving.",

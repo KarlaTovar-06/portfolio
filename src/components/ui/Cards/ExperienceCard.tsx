@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
 
 import { cn } from "@/lib/utils";
+import { LucideCalendarDays } from "lucide-react";
 import TechIcon from "../TechIcon/TechIcon";
+import LabelIcon from "@/components/ui/Label/LabelIcon";
 import type { Experience } from "@/lib/data/experience";
 
 interface ExperienceCardProps {
@@ -29,14 +31,14 @@ export default function ExperienceCard({
       initial={false}
       animate={{
         scale: isActive ? 1 : 0.96,
-        opacity: isActive ? 1 : 0.55,
+        opacity: isActive ? 1 : 0.30,
       }}
       transition={{ type: "spring", stiffness: 260, damping: 30 }}
       className={cn(
-        "relative border rounded-2xl overflow-hidden my-3",
+        "relative border rounded-3xl overflow-hidden my-3",
         isActive
-          ? "bg-card border-gris2 shadow-xl"
-          : "bg-card/50 border-gris2/40 backdrop-blur-sm"
+          ? "bg-card/5 backdrop-blur-sm border border-white/20 shadow-lg"
+          : "bg-card border-gris2/40 backdrop-blur-sm w-fit"
       )}
     >
       {/* Dots decorativos (estilo ventana) — solo visibles cuando es la card activa. */}
@@ -56,9 +58,25 @@ export default function ExperienceCard({
       </motion.div>
 
       <motion.div
+        aria-hidden
+        initial={false}
+        animate={{
+          opacity: isActive ? 1 : 0,
+          height: isActive ? "auto" : 0,
+        }}
+        transition={{ duration: 0.25 }}
+        className="absolute top-4 right-5 flex gap-2 z-10 overflow-hidden"
+      >
+        <span className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-muted-foreground/50">
+          <LucideCalendarDays size={14} />
+          {data.period}
+        </span>
+      </motion.div>
+
+      <motion.div
         layout
         animate={{
-          padding: isActive ? "2.5rem 1.5rem 1.5rem" : "0.75rem 1.25rem",
+          padding: isActive ? "2.5rem 0.5rem 0.5rem" : "0.75rem 1.25rem",
         }}
         transition={{ type: "spring", stiffness: 260, damping: 30 }}
         className="w-full"
@@ -72,16 +90,21 @@ export default function ExperienceCard({
           }}
           transition={{ duration: 0.2 }}
           className={cn(
-            "flex flex-col items-start gap-0.5",
+            "flex flex-col items-start gap-2",
             isActive && "hidden"
           )}
         >
-          <span className="text-[10px] uppercase tracking-wider text-muted-foreground">
+          <span className="text-sm uppercase tracking-wider text-muted-foreground">
             {data.period}
           </span>
-          <span className="text-base font-semibold text-foreground whitespace-nowrap">
-            {data.company}
-          </span>
+          <LabelIcon
+            title={data.company.text}
+            color={data.company.color}
+            icon={data.company.icon}
+          />
+          <h5 className="text-md md:text-lg font-bold text-foreground leading-tight">
+            {data.title}
+          </h5>
         </motion.div>
 
         {/* Versión FULL — toda la info. */}
@@ -94,43 +117,48 @@ export default function ExperienceCard({
           transition={{ duration: 0.25, delay: isActive ? 0.08 : 0 }}
           className={cn("flex flex-col gap-4", !isActive && "hidden")}
         >
-          <header className="flex flex-col gap-1">
-            <span className="text-xs uppercase tracking-wider text-muted-foreground">
-              {data.period}
-            </span>
-            <h3 className="text-xl md:text-2xl font-bold text-foreground leading-tight">
-              {data.title}
-            </h3>
-            <p className="text-sm md:text-base font-medium text-rosa">
-              {data.company}
+          <div className="flex flex-col gap-4 p-6 bg-card rounded-2xl">
+            <header className="flex w-full justify-between gap-1">
+              <h3 className="text-xl md:text-2xl font-bold text-foreground leading-tight">
+                {data.title}
+              </h3>
+              <LabelIcon
+                title={data.company.text}
+                color={data.company.color}
+                icon={data.company.icon}
+              />
+            </header>
+
+            <p className="text-sm text-foreground/80 leading-relaxed">
+              {data.description}
             </p>
-          </header>
 
-          <p className="text-sm text-foreground/80 leading-relaxed">
-            {data.description}
-          </p>
+            {data.bullets.length > 0 && (
+              <ul className="flex flex-col gap-1.5 pl-1">
+                {data.bullets.map((bullet, i) => (
+                  <li
+                    key={i}
+                    className="flex gap-2 text-xs md:text-sm text-foreground/70 leading-relaxed"
+                  >
+                    <span className="mt-1.5 size-1.5 rounded-full bg-cyan flex-shrink-0" />
+                    <span>{bullet}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
 
-          {data.bullets.length > 0 && (
-            <ul className="flex flex-col gap-1.5 pl-1">
-              {data.bullets.map((bullet, i) => (
-                <li
-                  key={i}
-                  className="flex gap-2 text-xs md:text-sm text-foreground/70 leading-relaxed"
-                >
-                  <span className="mt-1.5 size-1.5 rounded-full bg-cyan flex-shrink-0" />
-                  <span>{bullet}</span>
-                </li>
-              ))}
-            </ul>
-          )}
-
-          {data.techIcons.length > 0 && (
-            <footer className="flex flex-wrap gap-2 pt-2 border-t border-gris2/60">
-              {data.techIcons.map((icon) => (
-                <TechIcon key={icon} src={icon} className="size-7 md:size-8" />
-              ))}
-            </footer>
-          )}
+            {data.techIcons.length > 0 && (
+              <footer className="flex flex-wrap gap-2 pt-2 border-t border-gris2/60">
+                {data.techIcons.map((icon) => (
+                  <TechIcon
+                    key={icon}
+                    src={icon}
+                    className="size-7 md:size-8"
+                  />
+                ))}
+              </footer>
+            )}
+          </div>
         </motion.div>
       </motion.div>
     </motion.div>

@@ -11,6 +11,8 @@ export default {
   			negro: '#161616',
   			negro2: '#282828',
   			verde: '#6FBF00',
+			amarillo: '#f59e0b',
+			morado:'#A22887',
   			cyan: '#00C2AB',
   			rosa: '#D73961',
   			gris: '#DCDCDC',

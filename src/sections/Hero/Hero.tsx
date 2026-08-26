@@ -14,7 +14,7 @@ import {
 
 export default function Hero() {
   return (
-    <section className="w-full max-w-6xl md:min-h-screen h-full mx-auto lg:my-0 my-12 flex justify-center items-center overflow-x-hidden">
+    <section id="hero" className="w-full max-w-6xl md:min-h-screen h-full mx-auto lg:my-0 my-12 flex justify-center items-center overflow-x-hidden">
       <div className="flex flex-col justify-center items-center">
         <div className="relative w-[520px] h-[560px] origin-bottom scale-[0.58] sm:scale-75 lg:scale-100">
           <FolderIcon className="absolute bottom-0 left-1/2 -translate-x-1/2 z-0 w-full h-auto dark:invert" />
