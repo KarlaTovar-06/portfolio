@@ -29,7 +29,7 @@ export default function LabelIcon({
       viewport={{ once: false, amount: 0.4 }}
       className={`flex items-center w-fit gap-1 px-2 rounded-lg lowercase md:text-lg text-sm font-semibold shadow-md ${colorClasses[color]}`}
     >
-      {Icon && <Icon className="size-43 md:size-4" />}
+      {Icon && <Icon className="size-3 md:size-4" />}
       <p>{title}</p>
     </motion.div>
   );

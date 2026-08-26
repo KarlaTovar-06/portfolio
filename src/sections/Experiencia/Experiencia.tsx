@@ -74,15 +74,50 @@ export default function Experiencia() {
         style={{ height: `${cardLength * 80}vh` }}
       >
         <div className="sticky top-0 h-screen flex items-center overflow-hidden">
-          <div className="mx-auto w-auto max-w-7xl flex items-center justify-between gap-20">
-            {/* ── Columna izquierda: cards colapsables ─────────────────── */}
-            <div className="flex-1 max-w-3xl flex flex-col justify-center">
+          <div className="mx-auto w-auto max-w-7xl flex items-center justify-between gap-14">
+            {/* ── Columna izquierda: timeline + cards colapsables ─────── */}
+
+            {/* ── Timeline + cards, ahora en UNA sola columna ─────────────────────── */}
+            <div className="relative flex-1 flex flex-col justify-center z-50">
+              {/* Línea rosa vertical — va detrás de los puntitos */}
+              <div className="absolute top-5 bottom-5 left-[9px] w-[2px] bg-rosa/50 rounded-full -z-10" />
+
               {experiences.map((exp, i) => (
-                <ExperienceCard
+                <motion.div
                   key={exp.id}
-                  data={exp}
-                  isActive={activeIndex === i}
-                />
+                  layout
+                  transition={{ type: "spring", stiffness: 260, damping: 30 }}
+                  className="flex items-center gap-3"
+                >
+                  {/* Puntito — vive en el mismo row que su card, se centra solo */}
+                  <div className="w-5 shrink-0 flex justify-center">
+                    <motion.span
+                      layout
+                      initial={false}
+                      animate={{
+                        scale: activeIndex === i ? 1.5 : 1,
+                        opacity: activeIndex === i ? 0 : 1,
+                      }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 260,
+                        damping: 30,
+                      }}
+                      className="block size-2 rounded-full bg-rosa/70"
+                    />
+                  </div>
+
+                  {/* Card */}
+                  <motion.div
+                    layout
+                    initial={false}
+                    animate={{ x: activeIndex === i ? -48 : 0 }}
+                    transition={{ type: "spring", stiffness: 260, damping: 30 }}
+                    className="flex-1"
+                  >
+                    <ExperienceCard data={exp} isActive={activeIndex === i} />
+                  </motion.div>
+                </motion.div>
               ))}
             </div>
 

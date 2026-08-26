@@ -1,7 +1,7 @@
 import Hero from "./sections/Hero/Hero";
 import Introducing from "./sections/Introducing/Introducing";
 import Experiencia from "./sections/Experiencia/Experiencia";
-import Logros from "./sections/Logros/Logros";
+import FeaturedWork from "./sections/FeaturedWork/FeaturedWork";
 import Skills from "./sections/Skilss/Skills";
 import BubbleMenu from "./components/common/BubbleMenu";
 import { ThemeProvider } from "./lib/theme";
@@ -31,7 +31,7 @@ const items = [
   },
   {
     label: "projects",
-    href: "#",
+    href: "#featured-work",
     ariaLabel: "Projects",
     rotation: 8,
     hoverStyles: { bgColor: "#D73961", textColor: "#ffffff" },
@@ -75,7 +75,7 @@ export default function App() {
 
           <Experiencia />
 
-          <Logros />
+          <FeaturedWork />
 
           <Skills />
         </main>
