@@ -86,7 +86,6 @@ export default function App() {
           <FeaturedWork />
 
           <Estudies />
-          <Skills />
         </main>
       </TooltipProvider>
     </ThemeProvider>

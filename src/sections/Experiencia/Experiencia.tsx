@@ -93,7 +93,7 @@ export default function Experiencia() {
   const active = experiences[activeIndex];
 
   return (
-    <section id="experince" className=" w-full min-h-auto py-10">
+    <section id="experience" className=" w-full min-h-auto py-10">
       {/* Título */}
       <div className="w-full flex justify-center items-center px-6 m-4">
         <h1 className="text-foreground leading-tight text-center">
@@ -238,10 +238,10 @@ export default function Experiencia() {
               <div
                 key={exp.id}
                 data-card
-                className="snap-center shrink-0 w-96"
+                className="snap-center shrink-0 w-96 p-4"
               >
                 {/* Card */}
-                <div className="relative w-full h-80 border border-gris2 rounded-2xl p-6 bg-card shadow-md">
+                <div className="relative w-full h-80 border border-gris2/20 rounded-2xl p-6 bg-card shadow-md">
                   <div className="absolute top-4 left-5 flex gap-2">
                     <span className="size-2.5 rounded-full bg-rosa" />
                     <span className="size-2.5 rounded-full bg-verde" />
