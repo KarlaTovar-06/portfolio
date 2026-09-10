@@ -7,7 +7,7 @@ import SplitText from "../../animations/SplitText/SplitText";
 const goodbyeLabels = [
   {
     title: "Adiós",
-    position: "absolute bottom-8 -left-10 z-50",
+    position: "absolute bottom-8 -left-3 z-50",
     rotate: -12,
     bg: "bg-morado",
   },
@@ -107,7 +107,7 @@ export default function Contact() {
                   <img
                     src={social.icon}
                     alt={social.name}
-                    className="size-12 rounded-xl shadow-lg cursor-pointer select-none"
+                    className="md:size-12 size-10 rounded-xl shadow-lg cursor-pointer select-none"
                     draggable={false}
                   />
                 </motion.a>

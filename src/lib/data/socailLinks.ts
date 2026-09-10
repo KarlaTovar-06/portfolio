@@ -5,9 +5,9 @@ export const socialLinks = [
       href: "https://github.com/KarlaTovar-06",
     },
     {
-      name: "Instagram",
-      icon: "/icons/instagram.webp",
-      href: "https://instagram.com/...",
+      name: "WhatsApp",
+      icon: "/icons/whatsapp.webp",
+      href: "https://wa.me/525633794668?text=Hola%20Karla%20me%20gustar%C3%ADa%20contactarme%20contigo%20%3A%29%29",
     },
     {
       name: "Email",
