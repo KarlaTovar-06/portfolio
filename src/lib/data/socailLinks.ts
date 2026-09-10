@@ -6,7 +6,7 @@ export const socialLinks = [
     },
     {
       name: "WhatsApp",
-      icon: "/icons/whatsapp.webp",
+      icon: "/icons/Whatsapp.webp",
       href: "https://wa.me/525633794668?text=Hola%20Karla%20me%20gustar%C3%ADa%20contactarme%20contigo%20%3A%29%29",
     },
     {
