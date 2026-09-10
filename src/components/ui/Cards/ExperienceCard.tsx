@@ -151,6 +151,7 @@ export default function ExperienceCard({
               <footer className="flex flex-wrap gap-2 pt-2 border-t border-gris2/60">
                 {data.techIcons.map((icon) => (
                   <TechIcon
+                    size="s"
                     key={icon}
                     src={icon}
                     className="size-7 md:size-8"

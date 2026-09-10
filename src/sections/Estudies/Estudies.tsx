@@ -202,7 +202,7 @@ export default function Estudies() {
                           <span
                             className={`px-2 py-0.5 rounded-full ${palette.pillBg} ${palette.pillText} font-medium`}
                           >
-                            Certificado
+                            Certificate
                           </span>
                         </div>
                       </div>
@@ -278,7 +278,7 @@ export default function Estudies() {
                       <span
                         className={`px-2 py-0.5 rounded-full ${palette.pillBg} ${palette.pillText} font-medium`}
                       >
-                        Certificado
+                        Certificate
                       </span>
                     </div>
                   </div>

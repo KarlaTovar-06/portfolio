@@ -1,11 +1,13 @@
 import Hero from "./sections/Hero/Hero";
 import Introducing from "./sections/Introducing/Introducing";
+import TechStack from "./sections/TechStack/TechStack";
 import Experiencia from "./sections/Experiencia/Experiencia";
 import FeaturedWork from "./sections/FeaturedWork/FeaturedWork";
 import Estudies from "./sections/Estudies/Estudies";
 import BubbleMenu from "./components/common/BubbleMenu";
 import { ThemeProvider } from "./lib/theme";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import Contact from "./sections/Contact/Contact";
 
 const items = [
   {
@@ -23,9 +25,9 @@ const items = [
     hoverStyles: { bgColor: "#9BD24F", textColor: "#ffffff" },
   },
   {
-    label: "skills",
-    href: "#skills",
-    ariaLabel: "Skills",
+    label: "tech stack",
+    href: "#tech-stack",
+    ariaLabel: "Tech Stack",
     rotation: 8,
     hoverStyles: { bgColor: "#3b82f6", textColor: "#ffffff" },
   },
@@ -52,7 +54,7 @@ const items = [
   },
   {
     label: "contact",
-    href: "#",
+    href: "#contact",
     ariaLabel: "Contact",
     rotation: -2,
     hoverStyles: { bgColor: "#A22887", textColor: "#ffffff" },
@@ -83,8 +85,10 @@ export default function App() {
           <Experiencia />
 
           <FeaturedWork />
+          <TechStack />
 
           <Estudies />
+          <Contact />
         </main>
       </TooltipProvider>
     </ThemeProvider>

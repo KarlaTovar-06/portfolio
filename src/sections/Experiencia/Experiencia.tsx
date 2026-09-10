@@ -69,6 +69,20 @@ export default function Experiencia() {
     setMobileActiveIndex(closestIndex);
   }, []);
 
+  // ── Mobile: autoplay - cambia de card cada 2s ────────────────────────────
+  const mobileActiveIndexRef = useRef(mobileActiveIndex);
+  useEffect(() => {
+    mobileActiveIndexRef.current = mobileActiveIndex;
+  }, [mobileActiveIndex]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const next = (mobileActiveIndexRef.current + 1) % cardLength;
+      scrollToCard(next);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [cardLength]);
+
   // Inicializa el activeIndex después del primer paint (cuando ya conocemos
   // los anchos reales) y escucha el scroll del contenedor.
   useEffect(() => {
@@ -80,20 +94,26 @@ export default function Experiencia() {
   }, [detectActiveCard]);
 
   // ── Mobile: click en un dot → scroll suave hacia la card ──────────────
-  const scrollToCard = (index: number) => {
+  const scrollToCard = (index: number, instant = false) => {
     const container = mobileScrollRef.current;
     if (!container) return;
     const card = container.querySelectorAll<HTMLElement>("[data-card]")[index];
     if (!card) return;
     const targetScroll =
       card.offsetLeft + card.offsetWidth / 2 - container.clientWidth / 2;
-    container.scrollTo({ left: targetScroll, behavior: "smooth" });
+    container.scrollTo({
+      left: targetScroll,
+      behavior: instant ? "auto" : "smooth",
+    });
   };
 
   const active = experiences[activeIndex];
 
   return (
-    <section id="experience" className=" w-full min-h-screen flex flex-col justify-center md:py-10">
+    <section
+      id="experience"
+      className=" w-full min-h-screen flex flex-col justify-center md:py-10"
+    >
       {/* Título */}
       <div className="w-full flex justify-center items-center px-6 m-4">
         <h1 className="text-foreground leading-tight text-center">

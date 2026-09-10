@@ -52,7 +52,7 @@ export default function Hero() {
             alt="GitHub"
           />
           <img
-            src="/icons/tailwind.webp"
+            src="/icons/React.webp"
             className="size-16 absolute z-[8] right-20 top-52 -rotate-12 shadow-xl"
             alt="Instagram"
           />

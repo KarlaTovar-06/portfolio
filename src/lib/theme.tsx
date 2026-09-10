@@ -47,12 +47,20 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     return () => media.removeEventListener("change", onChange);
   }, []);
 
-  const toggleTheme = () =>
-    setTheme((current) => {
-      const next = current === "dark" ? "light" : "dark";
+  const toggleTheme = () => {
+    const next = theme === "dark" ? "light" : "dark";
+
+    // Use View Transition API if available
+    if (document.startViewTransition) {
+      document.startViewTransition(() => {
+        setTheme(next);
+        window.localStorage.setItem("theme", next);
+      });
+    } else {
+      setTheme(next);
       window.localStorage.setItem("theme", next);
-      return next;
-    });
+    }
+  };
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
