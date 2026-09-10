@@ -34,7 +34,7 @@ export const certifications: Certification[] = [
     period: "2024",
     institution: "Universidad",
     description:
-      "Formación intensiva en desarrollo web full stack: frontend, backend, deploy y buenas prácticas.",
+      "Intensive training in full stack web development: frontend, backend, deployment, and best practices.",
     color: "morado",
     icon: Code2,
     images: [
@@ -47,11 +47,11 @@ export const certifications: Certification[] = [
   {
     id: "licenciatura",
     badgeText: "Licenciatura",
-    title: "Licenciatura en Ciencias",
+    title: "Mathematics and Applied Computing",
     period: "2020 — 2024",
     institution: "UNAM",
     description:
-      "Base sólida en matemáticas, algoritmia, modelado computacional y resolución de problemas.",
+      "Strong foundation in mathematics, algorithms, computational modeling, and problem solving.",
     color: "verde",
     icon: GraduationCap,
     images: [
@@ -68,7 +68,7 @@ export const certifications: Certification[] = [
     period: "2023",
     institution: "Initiative",
     description:
-      "Programa de formación tecnológica para mujeres: desarrollo de habilidades digitales y mentorías.",
+      "Technology training program for women: building digital skills and mentorship.",
     color: "rosa",
     icon: Heart,
     images: [
@@ -81,11 +81,11 @@ export const certifications: Certification[] = [
   {
     id: "cursos-ios",
     badgeText: "Cursos iOS",
-    title: "Cursos de Desarrollo iOS",
+    title: "iOS Development Courses",
     period: "2023 — 2024",
     institution: "Apple / SwiftUI",
     description:
-      "Cursos especializados de desarrollo iOS con SwiftUI: navegación, estado, datos y frameworks de Apple.",
+      "Specialized iOS development courses with SwiftUI: navigation, state management, data, and Apple frameworks.",
     color: "cyan",
     icon: Smartphone,
     images: [

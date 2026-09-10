@@ -44,7 +44,7 @@ export const experiences: Experience[] = [
     techIcons: [
       "/icons/typescript.webp",
       "/icons/next.webp",
-      "/icons/tailwind.webp",
+      "/icons/React.webp",
       "/icons/SwiftUI.webp",
       "/icons/github.webp",
       "/icons/figma.webp",
@@ -69,7 +69,7 @@ export const experiences: Experience[] = [
       "/icons/typescript.webp",
       "/icons/next.webp",
       "/icons/strapi.webp",
-      "/icons/tailwind.webp",
+      "/icons/React.webp",
       "/icons/trello.webp",
     ],
     image: "/assets/timeline/Kachi (1).webp",
@@ -118,7 +118,7 @@ export const experiences: Experience[] = [
   },
   {
     id: "education",
-    title: "Applied Mathematics & Computer Science",
+    title: "Mathematics and Applied Computing",
     company: { text: "UNAM", color: "morado", icon: GraduationCap },
     period: "2020 — 2024",
     description:
