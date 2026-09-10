@@ -57,7 +57,7 @@ export const techCategories: TechCategory[] = [
       },
       {
         name: "Tailwind CSS",
-        image: "/icons/Tailwind.webp",
+        image: "/icons/tailwind.webp",
         fallbackIcon: () => null,
         color: "#06B6D4",
       },

@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion } from "motion/react";
+import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
+import { motion, AnimatePresence } from "motion/react";
 import { cn } from "@/lib/utils";
 
 interface ImagesBadgeProps {
@@ -30,8 +31,6 @@ export function ImagesBadge({
   text,
   images,
   className,
-  href,
-  target,
   folderSize = { width: 32, height: 24 },
   teaserImageSize = { width: 20, height: 14 },
   hoverImageSize = { width: 48, height: 32 },
@@ -40,6 +39,8 @@ export function ImagesBadge({
   hoverRotation = 15,
 }: ImagesBadgeProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   // Limit to max 3 images
   const displayImages = images.slice(0, 3);
@@ -48,19 +49,63 @@ export function ImagesBadge({
   const tabWidth = folderSize.width * 0.375;
   const tabHeight = folderSize.height * 0.25;
 
-  const Component = href ? "a" : "div";
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsModalOpen(true);
+    setCurrentImageIndex(0);
+  };
+
+  const nextImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentImageIndex((prev) => (prev + 1) % displayImages.length);
+  };
+
+  const prevImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentImageIndex(
+      (prev) => (prev - 1 + displayImages.length) % displayImages.length
+    );
+  };
+
+  const goToImage = (e: React.MouseEvent, index: number) => {
+    e.stopPropagation();
+    setCurrentImageIndex(index);
+  };
+
+  const closeModal = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    setIsHovered(false);
+    setIsModalOpen(false);
+  };
+
+  // Close on scroll or escape
+  useEffect(() => {
+    if (!isModalOpen) return;
+
+    const handleScroll = () => { setIsHovered(false); setIsModalOpen(false); };
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") { setIsHovered(false); setIsModalOpen(false); }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isModalOpen]);
 
   return (
-    <Component
-      href={href}
-      target={target}
-      rel={target === "_blank" ? "noopener noreferrer" : undefined}
+    <div
       className={cn(
         "inline-flex cursor-pointer items-center gap-2 perspective-[1000px] transform-3d",
-        className,
+        className
       )}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={handleClick}
     >
       {/* Folder Container */}
       <motion.div
@@ -93,8 +138,8 @@ export function ImagesBadge({
             totalImages === 1
               ? 0
               : totalImages === 2
-                ? (index - 0.5) * hoverRotation
-                : (index - 1) * hoverRotation;
+              ? (index - 0.5) * hoverRotation
+              : (index - 1) * hoverRotation;
 
           // Hover positions - fan out
           const hoverY = hoverTranslateY - (totalImages - 1 - index) * 3;
@@ -102,8 +147,8 @@ export function ImagesBadge({
             totalImages === 1
               ? 0
               : totalImages === 2
-                ? (index - 0.5) * hoverSpread
-                : (index - 1) * hoverSpread;
+              ? (index - 0.5) * hoverSpread
+              : (index - 1) * hoverSpread;
 
           // Teaser positions - slight peek from folder
           const teaseY = -4 - (totalImages - 1 - index) * 1;
@@ -111,8 +156,8 @@ export function ImagesBadge({
             totalImages === 1
               ? 0
               : totalImages === 2
-                ? (index - 0.5) * 3
-                : (index - 1) * 3;
+              ? (index - 0.5) * 3
+              : (index - 1) * 3;
 
           return (
             <motion.div
@@ -172,6 +217,99 @@ export function ImagesBadge({
       <span className="text-sm font-medium text-neutral-700 dark:text-neutral-200">
         {text}
       </span>
-    </Component>
+
+      {/* Modal with Carousel */}
+      {createPortal(
+        <AnimatePresence>
+          {isModalOpen && displayImages.length > 0 && (
+            <div className="fixed inset-0 z-[9999] flex items-center justify-center">
+              {/* Backdrop */}
+              <motion.div
+                className="absolute inset-0 bg-black/40"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={closeModal}
+              />
+
+              {/* Modal */}
+              <motion.div
+                className="relative bg-white dark:bg-neutral-900 rounded-2xl shadow-2xl p-4 w-[360px]"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Image container */}
+                <div className="relative w-full h-[240px] overflow-hidden rounded-lg bg-neutral-100 dark:bg-neutral-800">
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={currentImageIndex}
+                      src={displayImages[currentImageIndex]}
+                      alt={`Preview ${currentImageIndex + 1}`}
+                      className="w-full h-full object-cover"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.15 }}
+                    />
+                  </AnimatePresence>
+
+                  {/* Navigation arrows */}
+                  {displayImages.length > 1 && (
+                    <>
+                      <button
+                        type="button"
+                        onClick={prevImage}
+                        className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/40 hover:bg-black/60 text-white flex items-center justify-center transition-colors text-lg"
+                      >
+                        ‹
+                      </button>
+                      <button
+                        type="button"
+                        onClick={nextImage}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/40 hover:bg-black/60 text-white flex items-center justify-center transition-colors text-lg"
+                      >
+                        ›
+                      </button>
+                    </>
+                  )}
+                </div>
+
+                {/* Dots indicator */}
+                {displayImages.length > 1 && (
+                  <div className="flex justify-center gap-2 mt-3">
+                    {displayImages.map((_, index) => (
+                      <button
+                        key={index}
+                        type="button"
+                        onClick={(e) => goToImage(e, index)}
+                        className={cn(
+                          "w-2.5 h-2.5 rounded-full transition-colors",
+                          index === currentImageIndex
+                            ? "bg-amber-500"
+                            : "bg-neutral-300 dark:bg-neutral-600"
+                        )}
+                      />
+                    ))}
+                  </div>
+                )}
+
+                {/* Close button */}
+                <button
+                  type="button"
+                  onClick={closeModal}
+                  className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-neutral-200 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-300 flex items-center justify-center text-base hover:bg-neutral-300 dark:hover:bg-neutral-600 transition-colors"
+                >
+                  ×
+                </button>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
+    </div>
   );
 }

@@ -1,7 +1,12 @@
 import type { LucideIcon } from "lucide-react";
 import { GraduationCap, Code2, Heart, Smartphone } from "lucide-react";
 
-export type CertificationColor = "rosa" | "verde" | "cyan" | "morado" | "amarillo";
+export type CertificationColor =
+  | "rosa"
+  | "verde"
+  | "cyan"
+  | "morado"
+  | "amarillo";
 
 export interface Certification {
   /** Stable id used as React key */
@@ -12,6 +17,8 @@ export interface Certification {
   title: string;
   /** Period (year range or single year) */
   period: string;
+
+  status: string;
   /** Institution or issuer */
   institution: string;
   /** Short description */
@@ -32,7 +39,8 @@ export const certifications: Certification[] = [
     badgeText: "Diplomado Web",
     title: "Diplomado en Desarrollo Web",
     period: "2024",
-    institution: "Universidad",
+    status: "In Progress",
+    institution: "DGTIC UNAM",
     description:
       "Intensive training in full stack web development: frontend, backend, deployment, and best practices.",
     color: "morado",
@@ -49,6 +57,7 @@ export const certifications: Certification[] = [
     badgeText: "Licenciatura",
     title: "Mathematics and Applied Computing",
     period: "2020 — 2024",
+    status: "Certificated",
     institution: "UNAM",
     description:
       "Strong foundation in mathematics, algorithms, computational modeling, and problem solving.",
@@ -66,15 +75,16 @@ export const certifications: Certification[] = [
     badgeText: "Mujer Digital",
     title: "Programa Mujer Digital",
     period: "2023",
-    institution: "Initiative",
+    status: "Certificated",
+    institution: "JA AMERICAS",
     description:
       "Technology training program for women: building digital skills and mentorship.",
     color: "rosa",
     icon: Heart,
     images: [
-      "/assets/certifications/mujer-digital.svg",
-      "/assets/certifications/mujer-digital.svg",
-      "/assets/certifications/mujer-digital.svg",
+      "/assets/certifications/NubeAWS-MD.png",
+      "/assets/certifications/MujerDigital.png",
+      "/assets/certifications/AWSEssencial-MD.png",
     ],
     href: "#",
   },
@@ -83,15 +93,16 @@ export const certifications: Certification[] = [
     badgeText: "Cursos iOS",
     title: "iOS Development Courses",
     period: "2023 — 2024",
+    status: "Certificated",
     institution: "Apple / SwiftUI",
     description:
       "Specialized iOS development courses with SwiftUI: navigation, state management, data, and Apple frameworks.",
     color: "cyan",
     icon: Smartphone,
     images: [
-      "/assets/certifications/cursos-ios.svg",
-      "/assets/certifications/cursos-ios.svg",
-      "/assets/certifications/cursos-ios.svg",
+      "/assets/certifications/CoreML-LDC.png",
+      "/assets/certifications/ARKit_Const.png",
+      "/assets/certifications/ARKit-LDC.png",
     ],
     href: "#",
   },

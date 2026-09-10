@@ -251,35 +251,36 @@ export default function Estudies() {
                 <DecorativeCard
                   borderColor="border-gris2/20"
                   backgroundColor="bg-card/30 backdrop-blur-sm"
-                  contentClassName="flex flex-col gap-5 px-2"
+                  contentClassName="flex flex-col gap-5 px-2 min-h-[300px] justify-between"
                 >
                   {/* Badge + título */}
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex flex-col gap-1">
-                      <span className="flex items-center gap-2 text-xs uppercase tracking-wider text-muted-foreground">
-                        <Icon className={`size-4 ${palette.text}`} />
-                        {cert.institution}
-                      </span>
-                      <h3 className="text-lg md:text-xl font-semibold text-foreground leading-tight">
-                        {cert.title}
-                      </h3>
+                  <div className="flex flex-col gap-2">
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex flex-col gap-1">
+                        <span className="flex items-center gap-2 text-xs uppercase tracking-wider text-muted-foreground">
+                          <Icon className={`size-4 ${palette.text}`} />
+                          {cert.institution}
+                        </span>
+                        <h3 className="text-lg md:text-xl font-semibold text-foreground leading-tight">
+                          {cert.title}
+                        </h3>
+                      </div>
                     </div>
-                  </div>
-
-                  {/* Descripción + periodo */}
-                  <div className="flex flex-col gap-3 pt-2 border-t border-gris2/15">
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      {cert.description}
-                    </p>
-                    <div className="flex items-center justify-between text-xs">
-                      <span className="text-muted-foreground">
-                        {cert.period}
-                      </span>
-                      <span
-                        className={`px-2 py-0.5 rounded-full ${palette.pillBg} ${palette.pillText} font-medium`}
-                      >
-                        Certificate
-                      </span>
+                    {/* Descripción + periodo */}
+                    <div className="flex flex-col gap-3 pt-2 border-t border-gris2/15">
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        {cert.description}
+                      </p>
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="text-muted-foreground">
+                          {cert.period}
+                        </span>
+                        <span
+                          className={`px-2 py-0.5 rounded-full ${palette.pillBg} ${palette.pillText} font-medium`}
+                        >
+                          {cert.status}
+                        </span>
+                      </div>
                     </div>
                   </div>
                   {/* El badge Aceternity: carpeta con preview de imágenes */}

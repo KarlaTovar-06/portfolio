@@ -139,7 +139,7 @@ export default function Experiencia() {
       <div
         ref={sectionRef}
         className="hidden lg:block relative"
-        style={{ height: `${cardLength * 80}vh` }}
+        style={{ height: `${cardLength * 50}vh` }}
       >
         <div className="sticky top-0 h-screen flex items-center overflow-hidden">
           <div className="mx-auto w-auto max-w-7xl flex items-center justify-between gap-14">
