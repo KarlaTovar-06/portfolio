@@ -8,6 +8,7 @@ import {
   certifications,
   type CertificationColor,
 } from "@/lib/data/certifications";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 // Mapa explícito de colores para que el JIT de Tailwind detecte las clases.
 // (Los template literals `bg-${color}` no son escaneados.)
@@ -51,6 +52,7 @@ export default function Estudies() {
   // ── Mobile: refs + estado del stepper ─────────────────────────────────
   const mobileScrollRef = useRef<HTMLDivElement>(null);
   const [mobileActiveIndex, setMobileActiveIndex] = useState(0);
+  const { t } = useLanguage();
 
   // Detecta cuál card está más centrada en el viewport del scroller.
   const detectActiveCard = useCallback(() => {
@@ -101,7 +103,7 @@ export default function Estudies() {
 
         <h1 className="text-foreground leading-tight">
           <SplitText
-            text="My [[estudies]]"
+            text={t("estudies.title")}
             className="text-3xl md:text-5xl"
             delay={0.2}
             staggerChildren={0.03}
@@ -213,7 +215,9 @@ export default function Estudies() {
                           images={cert.images}
                           href={cert.href}
                           target={
-                            cert.href && cert.href !== "#" ? "_blank" : undefined
+                            cert.href && cert.href !== "#"
+                              ? "_blank"
+                              : undefined
                           }
                           folderSize={{ width: 48, height: 36 }}
                           teaserImageSize={{ width: 28, height: 20 }}
@@ -232,7 +236,7 @@ export default function Estudies() {
         </div>
 
         {/* ── Desktop: grid 4 columnas (sin stepper) ──────────────── */}
-        <div className="hidden md:grid md:grid-cols-4 gap-12">
+        <div className="hidden md:grid md:grid-cols-4 gap-5">
           {certifications.map((cert, index) => {
             const Icon = cert.icon;
             const palette = colorClasses[cert.color];
@@ -251,54 +255,50 @@ export default function Estudies() {
                 <DecorativeCard
                   borderColor="border-gris2/20"
                   backgroundColor="bg-card/30 backdrop-blur-sm"
-                  contentClassName="flex flex-col gap-5 px-2 min-h-[300px] justify-between"
+                  contentClassName="flex flex-col gap-2 px-2 min-h-[300px] justify-between"
                 >
-                  {/* Badge + título */}
-                  <div className="flex flex-col gap-2">
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="flex flex-col gap-1">
-                        <span className="flex items-center gap-2 text-xs uppercase tracking-wider text-muted-foreground">
-                          <Icon className={`size-4 ${palette.text}`} />
-                          {cert.institution}
-                        </span>
-                        <h3 className="text-lg md:text-xl font-semibold text-foreground leading-tight">
-                          {cert.title}
-                        </h3>
-                      </div>
-                    </div>
-                    {/* Descripción + periodo */}
-                    <div className="flex flex-col gap-3 pt-2 border-t border-gris2/15">
+                  {/* Badge + título + Descripción*/}
+
+                  <div className="flex flex-col items-start justify-between gap-4">
+                    <div className="flex flex-col gap-1">
+                      <span className="flex items-center gap-2 text-xs uppercase tracking-wider text-muted-foreground">
+                        <Icon className={`size-4 ${palette.text}`} />
+                        {cert.institution}
+                      </span>
+                      <h3 className="text-md md:text-lg font-semibold text-foreground leading-tight">
+                        {cert.title}
+                      </h3>
                       <p className="text-sm text-muted-foreground leading-relaxed">
                         {cert.description}
                       </p>
-                      <div className="flex items-center justify-between text-xs">
-                        <span className="text-muted-foreground">
-                          {cert.period}
-                        </span>
-                        <span
-                          className={`px-2 py-0.5 rounded-full ${palette.pillBg} ${palette.pillText} font-medium`}
-                        >
-                          {cert.status}
-                        </span>
-                      </div>
                     </div>
                   </div>
-                  {/* El badge Aceternity: carpeta con preview de imágenes */}
-                  <div className="shrink-0 pt-1">
-                    <ImagesBadge
-                      text={cert.badgeText}
-                      images={cert.images}
-                      href={cert.href}
-                      target={
-                        cert.href && cert.href !== "#" ? "_blank" : undefined
-                      }
-                      folderSize={{ width: 48, height: 36 }}
-                      teaserImageSize={{ width: 28, height: 20 }}
-                      hoverImageSize={{ width: 64, height: 44 }}
-                      hoverTranslateY={-46}
-                      hoverSpread={26}
-                      hoverRotation={18}
-                    />
+                  {/* El badge Aceternity: carpeta con preview de imágenes + periodo*/}
+                  <div className="flex flex-col gap-8">
+                    <div className="w-full flex items-center justify-between text-xs">
+                      <span className="text-muted-foreground">
+                        {cert.period}
+                      </span>
+                      <span
+                        className={`px-2 py-0.5 rounded-full ${palette.pillBg} ${palette.pillText} font-medium`}
+                      >
+                        {cert.status}
+                      </span>
+                    </div>
+                      <ImagesBadge
+                        text={cert.badgeText}
+                        images={cert.images}
+                        href={cert.href}
+                        target={
+                          cert.href && cert.href !== "#" ? "_blank" : undefined
+                        }
+                        folderSize={{ width: 48, height: 36 }}
+                        teaserImageSize={{ width: 28, height: 20 }}
+                        hoverImageSize={{ width: 64, height: 44 }}
+                        hoverTranslateY={-46}
+                        hoverSpread={26}
+                        hoverRotation={18}
+                      />
                   </div>
                 </DecorativeCard>
               </motion.div>

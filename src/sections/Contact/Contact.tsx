@@ -3,6 +3,7 @@ import DecorativeCard from "../../components/ui/Cards/ScreenCard";
 import Label from "../../components/ui/Label/Label";
 import { socialLinks } from "@/lib/data/socailLinks";
 import SplitText from "../../animations/SplitText/SplitText";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 const goodbyeLabels = [
   {
@@ -38,6 +39,8 @@ const goodbyeLabels = [
 ];
 
 export default function Contact() {
+  const { t } = useLanguage();
+
   return (
     <section
       id="contact"
@@ -65,7 +68,7 @@ export default function Contact() {
             {/* Título */}
             <h1 className="text-foreground leading-tight text-center">
               <SplitText
-                text="Get in [[Touch]]"
+                text={t("contact.title")}
                 className="text-4xl md:text-6xl"
                 delay={0.3}
                 staggerChildren={0.03}
@@ -79,8 +82,7 @@ export default function Contact() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              I'd love to hear from you. Whether you have a question, a project
-              idea, or just want to say hello — feel free to reach out!
+              {t("contact.desc")}
             </motion.p>
 
             {/* Iconos de redes sociales */}

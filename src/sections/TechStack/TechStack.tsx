@@ -6,6 +6,7 @@ import SplitText from "../../animations/SplitText/SplitText";
 import TechIcon from "@/components/ui/TechIcon/TechIcon";
 import Label from "@/components/ui/Label/Label";
 import { techCategories } from "@/lib/data/techStack";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 /* ── Cluster centers — relative to card center ─────────────────────── */
 const clusterCenters = [
@@ -72,6 +73,7 @@ export default function TechStack() {
     target: containerRef,
     offset: ["start end", "end start"],
   });
+  const { t } = useLanguage();
 
   return (
     <section
@@ -108,7 +110,7 @@ export default function TechStack() {
           titleComponent={
             <h1 className="text-3xl text-foreground md:text-5xl">
               <SplitText
-                text="My [[tech stack]]"
+                text={t("tech.title")}
                 delay={0.2}
                 staggerChildren={0.03}
                 duration={0.6}
@@ -163,7 +165,7 @@ export default function TechStack() {
       <div className="flex flex-col items-start justify-center space-y-6 px-14 pb-16 md:hidden ">
         <h1 className="text-3xl text-foreground md:text-5xl">
           <SplitText
-            text="My [[tech stack]]"
+            text={t("tech.title")}
             delay={0.2}
             staggerChildren={0.03}
             duration={0.6}

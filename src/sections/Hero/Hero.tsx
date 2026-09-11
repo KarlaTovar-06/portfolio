@@ -1,6 +1,7 @@
 import Label from "../../components/ui/Label/Label";
 import { Terminal } from "@/components/ui/terminal";
 import SplitText from "../../animations/SplitText/SplitText";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 import {
   FolderIcon,
   GlassCard,
@@ -13,6 +14,8 @@ import {
 } from "@/components/common/icons";
 
 export default function Hero() {
+  const { t } = useLanguage();
+
   return (
     <section id="hero" className="w-full max-w-6xl min-h-screen mx-auto flex justify-center items-center overflow-hidden">
       <div className="flex flex-col justify-center items-center">
@@ -54,7 +57,7 @@ export default function Hero() {
           <img
             src="/icons/React.webp"
             className="size-16 absolute z-[8] right-20 top-52 -rotate-12 shadow-xl"
-            alt="Instagram"
+            alt="React"
           />
 
           <div className="absolute right-52 bottom-32 z-[7] -rotate-12">
@@ -62,13 +65,13 @@ export default function Hero() {
               commands={["npx i karla"]}
               outputs={{
                 0: [
-                  "> Initializing ...",
+                  `> ${t("hero.init")}`,
                   "",
-                  "✓ Compiling ideas...",
-                  "✓ Solving problems...",
-                  "✓ Playing good music...",
-                  "✓ Ready to create.",
-                  "✓ Developer initialized.",
+                  `\u2713 ${t("hero.ideas")}`,
+                  `\u2713 ${t("hero.problems")}`,
+                  `\u2713 ${t("hero.music")}`,
+                  `\u2713 ${t("hero.ready")}`,
+                  `\u2713 ${t("hero.initialized")}`,
                 ],
               }}
               typingSpeed={45}
@@ -114,7 +117,7 @@ export default function Hero() {
 
         <h1 className="py-3">
           <SplitText
-            text="PORT[[folio]]"
+            text={t("hero.title")}
             className="text-4xl md:text-7xl"
             delay={0.3}
             staggerChildren={0.03}

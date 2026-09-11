@@ -13,10 +13,12 @@ import ExperienceCard from "@/components/ui/Cards/ExperienceCard";
 import TechIcon from "@/components/ui/TechIcon/TechIcon";
 import { experiences } from "@/lib/data/experience";
 import LabelIcon from "@/components/ui/Label/LabelIcon";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export default function Experiencia() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const { t } = useLanguage();
 
   // ── Mobile: refs para el stepper de dots + scroll horizontal ─────────────
   const mobileScrollRef = useRef<HTMLDivElement>(null);
@@ -118,7 +120,7 @@ export default function Experiencia() {
       <div className="w-full flex justify-center items-center px-6 m-4">
         <h1 className="text-foreground leading-tight text-center">
           <SplitText
-            text="[[My]] Experience"
+            text={t("exp.title")}
             className="text-2xl md:text-4xl"
             delay={0.3}
             staggerChildren={0.03}

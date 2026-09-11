@@ -37,7 +37,7 @@ export const certifications: Certification[] = [
   {
     id: "diplomado-web",
     badgeText: "Diplomado Web",
-    title: "Diplomado en Desarrollo Web",
+    title: "Diplomado en Desarrollo y Optimizacion de Sitios Web",
     period: "2024",
     status: "In Progress",
     institution: "DGTIC UNAM",

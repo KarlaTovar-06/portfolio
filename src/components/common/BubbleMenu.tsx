@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 
 import ThemeToggle from "@/components/common/ThemeToggle";
+import LanguageToggle from "@/components/common/LanguageToggle";
 import { useHideOnScroll } from "@/hooks/useHideOnScroll";
 
 type MenuItem = {
@@ -312,6 +313,7 @@ export default function BubbleMenu({
           >
             Karla Tovar
           </span>
+          <LanguageToggle />
           <ThemeToggle />
         </div>
 

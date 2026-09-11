@@ -3,8 +3,11 @@ import Label from "../../components/ui/Label/Label";
 import SplitText from "../../animations/SplitText/SplitText";
 import { StarSilverIcon } from "@/components/common/icons";
 import { socialLinks } from "@/lib/data/socailLinks";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export default function Introducing() {
+  const { t } = useLanguage();
+
   return (
     <section id="introducing" className="w-full min-h-screen flex justify-center items-center py-10">
       <div className="relative flex flex-col lg:flex-row items-center lg:mx-12 mx-6 my-10 lg:my-0 gap-4">
@@ -71,7 +74,7 @@ export default function Introducing() {
           <div className="relative flex flex-col gap-6">
             <h1 className="text-foreground leading-tight">
               <SplitText
-                text="I'm [[Karla!]]"
+                text={t("intro.title")}
                 className="text-2xl md:text-4xl"
                 delay={0.3}
                 staggerChildren={0.03}
@@ -80,8 +83,7 @@ export default function Introducing() {
               />
             </h1>
             <p className="md:text-2xl">
-              Passionate about programming and design, with a perfectionist
-              focus on details and an analytical, problem-solving mindset.
+              {t("intro.bio")}
             </p>
             <motion.img
               src="/assets/myprojects.png"

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { AppWindow, ArrowUpRight, Globe, Mail, Sparkles } from "lucide-react";
 import SplitText from "../../animations/SplitText/SplitText";
 import { StarPinkIcon, StarSilverIcon } from "@/components/common/icons";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 type LinkItem = { name: string; url: string };
 
@@ -210,6 +211,8 @@ function BentoWidget({
 // ─────────────────────────────────────────────────────────────────────────
 
 export default function FeaturedWork() {
+  const { t } = useLanguage();
+
   return (
     <section
       id="featured-work"
@@ -218,7 +221,7 @@ export default function FeaturedWork() {
       <div className="w-full max-w-7xl flex flex-col gap-12">
         <h1 className="text-foreground leading-tight">
           <SplitText
-            text="Featured [[Work]]"
+            text={t("featured.title")}
             className="text-2xl md:text-4xl"
             delay={0.3}
             staggerChildren={0.03}
@@ -231,7 +234,7 @@ export default function FeaturedWork() {
           {/* Widget 1 — Websites (col-span-2, row-span-2) */}
           <BentoWidget
             icon={Globe}
-            label="Websites"
+            label={t("featured.websites")}
             count={websites.length}
             accent="text-rosa"
             className="md:col-span-2 md:row-span-2 z-20"
@@ -246,7 +249,7 @@ export default function FeaturedWork() {
           {/* Widget 2 — Web Apps (col-span-2, row 1) */}
           <BentoWidget
             icon={AppWindow}
-            label="Web Apps"
+            label={t("featured.webapps")}
             count={webapps.length}
             accent="text-cyan"
             className="md:col-span-2"
@@ -261,7 +264,7 @@ export default function FeaturedWork() {
           {/* Widget 3 — Personal (col-span-1, row 2) */}
           <BentoWidget
             icon={Sparkles}
-            label="Personal"
+            label={t("featured.personal")}
             count={personal.length}
             accent="text-verde"
             className="md:col-span-1"
@@ -276,7 +279,7 @@ export default function FeaturedWork() {
               <div className="flex flex-col items-center justify-center text-center gap-2 p-3 rounded-2xl border border-dashed border-gris2 h-full min-h-[80px]">
                 <Sparkles className="size-4 text-verde" />
                 <p className="text-[10px] text-muted-foreground">
-                  Personal projects coming soon.
+                  {t("featured.comingSoon")}
                 </p>
               </div>
             )}
@@ -302,10 +305,10 @@ export default function FeaturedWork() {
             className="md:col-span-1 rounded-3xl border border-gris2/20 bg-gradient-to-br from-rosa to-rosa/60 p-6 flex flex-col backdrop-blur-sm items-start justify-start gap-2 hover:border-rosa transition-colors group"
           >
             <h2 className="text-xl md:text-4xl font-bold text-white">
-              Let&apos;s talk
+              {t("featured.cta")}
             </h2>
             <p className="text-sm md:text-md text-white flex items-center gap-1">
-              Go to contact <ArrowUpRight className="size-3" />
+              {t("featured.ctaSub")} <ArrowUpRight className="size-3" />
             </p>
           </motion.a>
         </div>
