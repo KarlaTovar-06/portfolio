@@ -234,7 +234,7 @@ export function ImagesBadge({
 
               {/* Modal */}
               <motion.div
-                className="relative bg-white dark:bg-neutral-900 rounded-2xl shadow-2xl p-4 w-[360px]"
+                className="relative bg-white dark:bg-neutral-900 rounded-2xl shadow-2xl p-4 max-w-2xl"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
@@ -242,7 +242,7 @@ export function ImagesBadge({
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Image container */}
-                <div className="relative w-full h-[240px] overflow-hidden rounded-lg bg-neutral-100 dark:bg-neutral-800">
+                <div className="relative w-full  overflow-hidden rounded-lg bg-neutral-100 dark:bg-neutral-800">
                   <AnimatePresence mode="wait">
                     <motion.img
                       key={currentImageIndex}
