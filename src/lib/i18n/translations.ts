@@ -183,7 +183,7 @@ export const translations: Record<Locale, Record<string, string>> = {
     // Menu
     "menu.home": "inicio",
     "menu.about": "sobre m\u00ed",
-    "menu.techstack": "stack tecnol\u00f3gico",
+    "menu.techstack": "tecnologías",
     "menu.projects": "proyectos",
     "menu.experience": "experiencia",
     "menu.estudies": "estudios",
