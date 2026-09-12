@@ -5,6 +5,7 @@ import { LucideCalendarDays } from "lucide-react";
 import TechIcon from "../TechIcon/TechIcon";
 import LabelIcon from "@/components/ui/Label/LabelIcon";
 import type { Experience } from "@/lib/data/experience";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 interface ExperienceCardProps {
   data: Experience;
@@ -25,6 +26,12 @@ export default function ExperienceCard({
   data,
   isActive,
 }: ExperienceCardProps) {
+  const { t } = useLanguage();
+  const prefix = `exp.${data.id}`;
+  const title = t(`${prefix}.title`);
+  const desc = t(`${prefix}.desc`);
+  const bullets = data.bullets.map((_, i) => t(`${prefix}.b${i}`));
+
   return (
     <motion.div
       layout
@@ -103,7 +110,7 @@ export default function ExperienceCard({
             icon={data.company.icon}
           />
           <h5 className="text-md md:text-lg font-bold text-foreground leading-tight">
-            {data.title}
+            {title}
           </h5>
         </motion.div>
 
@@ -120,7 +127,7 @@ export default function ExperienceCard({
           <div className="flex flex-col gap-4 p-6 bg-card rounded-2xl">
             <header className="flex w-full justify-between gap-1">
               <h3 className="text-xl md:text-2xl font-bold text-foreground leading-tight">
-                {data.title}
+                {title}
               </h3>
               <LabelIcon
                 title={data.company.text}
@@ -130,12 +137,12 @@ export default function ExperienceCard({
             </header>
 
             <p className="text-sm text-foreground/80 leading-relaxed">
-              {data.description}
+              {desc}
             </p>
 
-            {data.bullets.length > 0 && (
+            {bullets.length > 0 && (
               <ul className="flex flex-col gap-1.5 pl-1">
-                {data.bullets.map((bullet, i) => (
+                {bullets.map((bullet, i) => (
                   <li
                     key={i}
                     className="flex gap-2 text-xs md:text-sm text-foreground/70 leading-relaxed"

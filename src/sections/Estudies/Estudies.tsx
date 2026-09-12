@@ -160,6 +160,10 @@ export default function Estudies() {
               {certifications.map((cert, index) => {
                 const Icon = cert.icon;
                 const palette = colorClasses[cert.color];
+                const certTitle = t(`cert.${cert.id}.title`);
+                const certDesc = t(`cert.${cert.id}.desc`);
+                const certStatus = t(`cert.${cert.id}.status`);
+                const certBadge = t(`cert.${cert.id}.badge`);
                 return (
                   <motion.div
                     key={cert.id}
@@ -187,7 +191,7 @@ export default function Estudies() {
                             {cert.institution}
                           </span>
                           <h3 className="text-lg md:text-xl font-semibold text-foreground leading-tight">
-                            {cert.title}
+                            {certTitle}
                           </h3>
                         </div>
                       </div>
@@ -195,7 +199,7 @@ export default function Estudies() {
                       {/* Descripción + periodo */}
                       <div className="flex flex-col gap-3 pt-2 border-t border-gris2/15">
                         <p className="text-sm text-muted-foreground leading-relaxed">
-                          {cert.description}
+                          {certDesc}
                         </p>
                         <div className="flex items-center justify-between text-xs">
                           <span className="text-muted-foreground">
@@ -204,14 +208,14 @@ export default function Estudies() {
                           <span
                             className={`px-2 py-0.5 rounded-full ${palette.pillBg} ${palette.pillText} font-medium`}
                           >
-                            Certificate
+                            {certStatus}
                           </span>
                         </div>
                       </div>
                       {/* El badge Aceternity: carpeta con preview de imágenes */}
                       <div className="shrink-0 pt-1">
                         <ImagesBadge
-                          text={cert.badgeText}
+                          text={certBadge}
                           images={cert.images}
                           href={cert.href}
                           target={
@@ -240,6 +244,10 @@ export default function Estudies() {
           {certifications.map((cert, index) => {
             const Icon = cert.icon;
             const palette = colorClasses[cert.color];
+            const certTitle = t(`cert.${cert.id}.title`);
+            const certDesc = t(`cert.${cert.id}.desc`);
+            const certStatus = t(`cert.${cert.id}.status`);
+            const certBadge = t(`cert.${cert.id}.badge`);
             return (
               <motion.div
                 key={cert.id}
@@ -266,10 +274,10 @@ export default function Estudies() {
                         {cert.institution}
                       </span>
                       <h3 className="text-md md:text-lg font-semibold text-foreground leading-tight">
-                        {cert.title}
+                        {certTitle}
                       </h3>
                       <p className="text-sm text-muted-foreground leading-relaxed">
-                        {cert.description}
+                        {certDesc}
                       </p>
                     </div>
                   </div>
@@ -282,11 +290,11 @@ export default function Estudies() {
                       <span
                         className={`px-2 py-0.5 rounded-full ${palette.pillBg} ${palette.pillText} font-medium`}
                       >
-                        {cert.status}
+                        {certStatus}
                       </span>
                     </div>
                       <ImagesBadge
-                        text={cert.badgeText}
+                        text={certBadge}
                         images={cert.images}
                         href={cert.href}
                         target={
