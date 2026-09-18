@@ -66,7 +66,7 @@ export default function Contact() {
         >
           <div className="flex flex-col items-center gap-8">
             {/* Título */}
-            <h1 className="text-foreground leading-tight text-center">
+            <h2 className="text-foreground leading-tight text-center">
               <SplitText
                 text={t("contact.title")}
                 className="text-4xl md:text-6xl"
@@ -75,7 +75,7 @@ export default function Contact() {
                 duration={0.6}
                 initialY={50}
               />
-            </h1>
+            </h2>
             <motion.p
               className="text-foreground/70 text-center text-lg md:text-xl max-w-md"
               initial={{ opacity: 0, y: 20 }}

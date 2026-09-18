@@ -1,4 +1,3 @@
-"use client";
 import { useRef } from "react";
 import { useScroll, useTransform, motion } from "motion/react";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
@@ -108,7 +107,7 @@ export default function TechStack() {
       <div className="relative z-0 md:block hidden">
         <ContainerScroll
           titleComponent={
-            <h1 className="text-3xl text-foreground md:text-5xl">
+            <h2 className="text-3xl text-foreground md:text-5xl">
               <SplitText
                 text={t("tech.title")}
                 delay={0.2}
@@ -116,12 +115,14 @@ export default function TechStack() {
                 duration={0.6}
                 initialY={50}
               />
-            </h1>
+            </h2>
           }
         >
           <img
             src="/assets/screenImage.webp"
             alt="Screen Image"
+            width={1556}
+            height={1011}
             className=" w-full h-full object-cover opacity-65"
           />
         </ContainerScroll>
@@ -163,7 +164,7 @@ export default function TechStack() {
 
       {/* ── Mobile: stacked grid ───────────────────────────────────── */}
       <div className="flex flex-col items-start justify-center space-y-6 px-14 pb-16 md:hidden ">
-        <h1 className="text-3xl text-foreground md:text-5xl">
+        <h2 className="text-3xl text-foreground md:text-5xl">
           <SplitText
             text={t("tech.title")}
             delay={0.2}
@@ -171,12 +172,12 @@ export default function TechStack() {
             duration={0.6}
             initialY={50}
           />
-        </h1>
+        </h2>
         {techCategories.map((cat) => (
           <div key={cat.id} className="text-start">
-            <h3 className="mb-2 text-xs font-medium text-muted-foreground">
+            <h2 className="mb-2 text-xs font-medium text-muted-foreground">
               {cat.title}
-            </h3>
+            </h2>
             <div className="flex flex-wrap items-center justify-start gap-2">
               {cat.items.map((item) => (
                 <TechIcon

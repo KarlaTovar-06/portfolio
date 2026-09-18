@@ -7,10 +7,10 @@ export default function LanguageToggle() {
     <button
       type="button"
       onClick={toggleLocale}
-      aria-label="Toggle language"
+      aria-label={locale === "en" ? "Cambiar a español" : "Switch to English"}
       className="flex p-3 size-11 items-center rounded-full border-2 bg-white text-negro transition-transform duration-200 dark:bg-negro2 dark:text-white cursor-pointer"
     >
-      <span className="text-xs font-bold">{locale === "en" ? "ES" : "EN"}</span>
+      <span className="text-xs font-bold" aria-hidden="true">{locale === "en" ? "ES" : "EN"}</span>
     </button>
   );
 }

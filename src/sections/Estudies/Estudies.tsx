@@ -101,7 +101,7 @@ export default function Estudies() {
       <div className="w-full max-w-7xl flex flex-col gap-12 md:gap-16">
         {/* ── Encabezado ─────────────────────────────────────────────── */}
 
-        <h1 className="text-foreground leading-tight">
+        <h2 className="text-foreground leading-tight">
           <SplitText
             text={t("estudies.title")}
             className="text-3xl md:text-5xl"
@@ -110,7 +110,7 @@ export default function Estudies() {
             duration={0.6}
             initialY={50}
           />
-        </h1>
+        </h2>
 
         {/* ═══════════════════════════════════════════════════════════════
             Mobile: stepper fijo + scroller horizontal separado.
@@ -190,9 +190,9 @@ export default function Estudies() {
                             <Icon className={`size-4 ${palette.text}`} />
                             {cert.institution}
                           </span>
-                          <h3 className="text-lg md:text-xl font-semibold text-foreground leading-tight">
+                           <h2 className="text-lg md:text-xl font-semibold text-foreground leading-tight">
                             {certTitle}
-                          </h3>
+                          </h2>
                         </div>
                       </div>
 
@@ -273,9 +273,9 @@ export default function Estudies() {
                         <Icon className={`size-4 ${palette.text}`} />
                         {cert.institution}
                       </span>
-                      <h3 className="text-md md:text-lg font-semibold text-foreground leading-tight">
+                      <h2 className="text-md md:text-lg font-semibold text-foreground leading-tight">
                         {certTitle}
-                      </h3>
+                      </h2>
                       <p className="text-sm text-muted-foreground leading-relaxed">
                         {certDesc}
                       </p>

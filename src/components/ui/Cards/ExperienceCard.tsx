@@ -109,9 +109,9 @@ export default function ExperienceCard({
             color={data.company.color}
             icon={data.company.icon}
           />
-          <h5 className="text-md md:text-lg font-bold text-foreground leading-tight">
+          <h2 className="text-md md:text-lg font-bold text-foreground leading-tight">
             {title}
-          </h5>
+          </h2>
         </motion.div>
 
         {/* Versión FULL — toda la info. */}
@@ -126,9 +126,9 @@ export default function ExperienceCard({
         >
           <div className="flex flex-col gap-4 p-6 bg-card rounded-2xl">
             <header className="flex w-full justify-between gap-1">
-              <h3 className="text-xl md:text-2xl font-bold text-foreground leading-tight">
+              <h2 className="text-xl md:text-2xl font-bold text-foreground leading-tight">
                 {title}
-              </h3>
+              </h2>
               <LabelIcon
                 title={data.company.text}
                 color={data.company.color}

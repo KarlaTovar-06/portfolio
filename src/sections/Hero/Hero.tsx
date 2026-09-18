@@ -17,7 +17,10 @@ export default function Hero() {
   const { t } = useLanguage();
 
   return (
-    <section id="hero" className="w-full max-w-6xl min-h-screen mx-auto flex justify-center items-center overflow-hidden">
+    <section
+      id="hero"
+      className="w-full max-w-6xl min-h-screen mx-auto flex justify-center items-center overflow-hidden"
+    >
       <div className="flex flex-col justify-center items-center">
         {/* Wrapper has the visual size of the scaled content so the flex
             centering actually centers what the user sees (not the 520x560
@@ -25,94 +28,113 @@ export default function Hero() {
             origin-bottom + scale). */}
         <div className="relative w-[302px] h-[325px] sm:w-[390px] sm:h-[420px] lg:w-[520px] lg:h-[560px]">
           <div className="absolute -left-[109px] -top-[235px] sm:-left-[65px] sm:-top-[140px] lg:left-0 lg:top-0 w-[520px] h-[560px] origin-bottom scale-[0.58] sm:scale-75 lg:scale-100">
-            <FolderIcon className="absolute bottom-0 left-1/2 -translate-x-1/2 z-0 w-full h-auto dark:invert" />
-
-          <StarTripleIcon className="absolute -left-10 top-20 z-[5] rotate-[-14deg] dark:invert" />
-          <StarPinkIcon
-            className="absolute -left-8 bottom-20 z-50 rotate-[12deg]"
-            aria-hidden="true"
-          />
-          <StarSilverIcon
-            className="absolute -right-5 top-40 z-[7] rotate-[-8deg]"
-            aria-hidden="true"
-          />
-
-          <CardIcon
-            className="absolute -right-48 -bottom-[120px] z-10 rotate-[8deg]"
-            aria-hidden="true"
-          />
-
-          <SwiftUIIcon
-            className="absolute left-32 top-32 z-[4] rotate-12"
-            aria-hidden="true"
-          />
-
-          <ChococatIcon className="absolute right-40 top-[205px] z-[9] rotate-[6deg]" />
-
-          <img
-            src="/icons/github.webp"
-            className="size-16 absolute z-[8] -right-2 bottom-52 rotate-12"
-            alt="GitHub"
-          />
-          <img
-            src="/icons/React.webp"
-            className="size-16 absolute z-[8] right-20 top-52 -rotate-12 shadow-xl"
-            alt="React"
-          />
-
-          <div className="absolute right-52 bottom-32 z-[7] -rotate-12">
-            <Terminal
-              commands={["npx i karla"]}
-              outputs={{
-                0: [
-                  `> ${t("hero.init")}`,
-                  "",
-                  `\u2713 ${t("hero.ideas")}`,
-                  `\u2713 ${t("hero.problems")}`,
-                  `\u2713 ${t("hero.music")}`,
-                  `\u2713 ${t("hero.ready")}`,
-                  `\u2713 ${t("hero.initialized")}`,
-                ],
-              }}
-              typingSpeed={45}
-              delayBetweenCommands={1000}
+            <img
+              src="/assets/Folder.png"
+              className="absolute bottom-0 left-1/2 -translate-x-1/2 z-0 w-full h-auto dark:invert"
+              alt="star"
             />
-          </div>
+            <img
+              src="/assets/StarTriple.webp"
+              className="w-1/3 absolute -left-20 top-14 z-[5] rotate-[190deg] dark:invert"
+              alt="star"
+            />
 
-          <Label
-            title="software"
-            background="bg-verde"
-            position="
+            <img
+              src="/assets/pinkstart.png"
+              className="w-1/4 absolute -left-8 bottom-20 z-50 rotate-[12deg]"
+              alt="star"
+            />
+
+            <img
+              src="/assets/starsilver.svg"
+              className="absolute -right-5 top-40 z-[7] rotate-[-8deg]"
+              alt="star"
+            />
+
+            <img
+              src="/assets/CARD.png"
+              className="w-1/2 absolute right-8 bottom-32 z-10 rotate-[8deg]"
+              alt="card"
+            />
+
+            <img
+              src="/icons/SwiftUI.webp"
+              className="size-16 absolute left-32 top-32 z-[4] rotate-12 shadow-xl"
+              alt="swiftui"
+            />
+
+            <img
+              src="/assets/Chococat_Icon.png"
+              className="size-24 absolute right-40 top-[205px] z-[9] rotate-[6deg]"
+              alt="React"
+            />
+
+            <img
+              src="/icons/github.webp"
+              className="size-16 absolute z-[8] -right-2 bottom-52 rotate-12"
+              alt="GitHub"
+            />
+            <img
+              src="/icons/React.webp"
+              className="size-16 absolute z-[8] right-20 top-48 -rotate-12 shadow-xl"
+              alt="React"
+            />
+
+            <div className="absolute right-52 bottom-32 z-[7] -rotate-12">
+              <Terminal
+                commands={["npx i karla"]}
+                outputs={{
+                  0: [
+                    `> ${t("hero.init")}`,
+                    "",
+                    `\u2713 ${t("hero.ideas")}`,
+                    `\u2713 ${t("hero.problems")}`,
+                    `\u2713 ${t("hero.music")}`,
+                    `\u2713 ${t("hero.ready")}`,
+                    `\u2713 ${t("hero.initialized")}`,
+                  ],
+                }}
+                typingSpeed={45}
+                delayBetweenCommands={1000}
+              />
+            </div>
+
+            <Label
+              title="software"
+              background="bg-verde"
+              colorText="text-black font-semibold"
+              position="
             absolute top-44 -left-12
             z-50
           "
-            rotate={-25}
-          />
-          <Label
-            title="ui/ux"
-            background="bg-rosa"
-            position="
+              rotate={-25}
+            />
+            <Label
+              title="ui/ux"
+              background="bg-rosa"
+              position="
             absolute bottom-40 -right-1 z-20
           "
-            rotate={16}
-          />
-          <Label
-            title="developer"
-            background="bg-cyan"
-            position="
+              rotate={16}
+            />
+            <Label
+              title="developer"
+              background="bg-cyan"
+              colorText="text-black font-semibold"
+              position="
             absolute top-40 left-1/2 z-50
           "
-            rotate={-5}
-          />
+              rotate={-5}
+            />
 
-          <GlassCard className="absolute bottom-2 left-1/2 -translate-x-1/2 z-30 w-full h-auto" />
+            <GlassCard className="absolute bottom-2 left-1/2 -translate-x-1/2 z-30 w-full h-auto" />
           </div>
         </div>
 
         <Label
           title="karla_tovar"
           background="bg-input"
-          colorText="text-stone-400 font-regular"
+          colorText="text-stone-600 font-regular"
         />
 
         <h1 className="py-3">

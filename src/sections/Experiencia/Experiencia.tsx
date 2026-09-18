@@ -118,7 +118,7 @@ export default function Experiencia() {
     >
       {/* Título */}
       <div className="w-full flex justify-center items-center px-6 m-4">
-        <h1 className="text-foreground leading-tight text-center">
+        <h2 className="text-foreground leading-tight text-center">
           <SplitText
             text={t("exp.title")}
             className="text-2xl md:text-4xl"
@@ -127,7 +127,7 @@ export default function Experiencia() {
             duration={0.6}
             initialY={50}
           />
-        </h1>
+        </h2>
       </div>
 
       {/* ═══════════════════════════════════════════════════════════════════
@@ -273,9 +273,9 @@ export default function Experiencia() {
                     <span className="text-xs uppercase tracking-wider text-muted-foreground">
                       {exp.period}
                     </span>
-                    <h4 className="text-lg font-bold text-foreground">
+                    <h2 className="text-lg font-bold text-foreground">
                       {exp.title}
-                    </h4>
+                    </h2>
                     <LabelIcon
                       title={exp.company.text}
                       color={exp.company.color}

@@ -15,6 +15,9 @@ export default function Introducing() {
         <div className="relative lg:w-1/3 lg:mx-24 flex flex-col justify-center text-center gap-6 my-8">
           <motion.img
             src="/assets/Fotito.svg"
+            alt="Karla Tovar — portrait illustration"
+            width={418}
+            height={418}
             className="w-full h-full object-cover"
             initial={{ opacity: 0, scale: 0.9, y: 10 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
@@ -72,7 +75,7 @@ export default function Introducing() {
         {/* Columna derecha */}
         <div className="w-full lg:w-2/3 flex flex-col justify-center mx-10 gap-6">
           <div className="relative flex flex-col gap-6">
-            <h1 className="text-foreground leading-tight">
+            <h2 className="text-foreground leading-tight">
               <SplitText
                 text={t("intro.title")}
                 className="text-2xl md:text-4xl"
@@ -81,12 +84,15 @@ export default function Introducing() {
                 duration={0.6}
                 initialY={50}
               />
-            </h1>
+            </h2>
             <p className="md:text-2xl">
               {t("intro.bio")}
             </p>
             <motion.img
               src="/assets/myprojects.png"
+              alt="Featured projects showcase"
+              width={388}
+              height={269}
               className=" w-1/2 h-full object-cover"
               initial={{ opacity: 0, scale: 0.9, y: 10 }}
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
@@ -106,6 +112,9 @@ export default function Introducing() {
 
         <img
           src="/assets/light.webp"
+          alt="Decorative lightbulb"
+          width={612}
+          height={616}
           className="absolute w-40 dark:invert -right-20 -bottom-12"
         />
       </div>

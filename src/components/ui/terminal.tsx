@@ -1,4 +1,3 @@
-"use client";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
@@ -252,8 +251,8 @@ const tokenColors: Record<TokenType, string> = {
   operator: "text-red-400",
   path: "text-cyan-300",
   variable: "text-pink-400",
-  comment: "text-neutral-500",
-  default: "text-neutral-500",
+  comment: "text-neutral-400",
+  default: "text-neutral-400",
 };
 
 function SyntaxHighlightedText({ text }: { text: string }) {
@@ -294,7 +293,7 @@ export function Terminal({
   typingSpeed = 50,
   delayBetweenCommands = 800,
   initialDelay = 500,
-  enableSound = true,
+  enableSound = false,
 }: TerminalProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -412,11 +411,11 @@ export function Terminal({
   }, [lines, phase]);
 
   const prompt = (
-    <span className="text-neutral-500">
+    <span className="text-neutral-400">
       <span className="text-sky-500">{username}</span>
       <span className="text-emerald-600">:</span>
       <span className="text-sky-400">~</span>
-      <span className="text-neutral-500">$</span>{" "}
+      <span className="text-neutral-400">$</span>{" "}
     </span>
   );
 

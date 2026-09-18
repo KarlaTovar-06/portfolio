@@ -125,7 +125,7 @@ function LinkPreviewCard({ url }: { url: string }) {
             loading="lazy"
           />
         ) : (
-          <div className="w-full h-full bg-gradient-to-br from-foreground/5 to-foreground/10 flex items-center justify-center text-[10px] font-bold text-foreground/40">
+          <div className="w-full h-full bg-gradient-to-br from-foreground/5 to-foreground/10 flex items-center justify-center text-[10px] font-bold text-foreground/60">
             {loading ? "…" : hostname}
           </div>
         )}
@@ -137,15 +137,15 @@ function LinkPreviewCard({ url }: { url: string }) {
           {data?.title || hostname}
         </p>
         {data?.description ? (
-          <p className="text-[10px] text-muted-foreground line-clamp-2 leading-snug">
+          <p className="text-[10px] text-foreground/60 line-clamp-2 leading-snug">
             {data.description}
           </p>
         ) : (
-          <p className="text-[10px] text-muted-foreground/60 line-clamp-2 leading-snug">
+          <p className="text-[10px] text-foreground/50 line-clamp-2 leading-snug">
             {loading ? "Loading preview…" : hostname}
           </p>
         )}
-        <p className="text-[9px] tracking-wider text-muted-foreground/70 truncate mt-0.5">
+        <p className="text-[9px] tracking-wider text-foreground/50 truncate mt-0.5">
           {hostname}
         </p>
       </div>
@@ -191,9 +191,9 @@ function BentoWidget({
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Icon className={`size-4 ${accent}`} />
-          <h3 className="text-xs uppercase tracking-wider font-bold text-muted-foreground">
+          <h2 className="text-xs uppercase tracking-wider font-bold text-muted-foreground">
             {label}
-          </h3>
+          </h2>
         </div>
       </div>
       <div className="flex-1 min-h-0">{children}</div>
@@ -219,7 +219,7 @@ export default function FeaturedWork() {
       className="relative w-full min-h-screen flex flex-col justify-center items-center py-16 px-6"
     >
       <div className="w-full max-w-7xl flex flex-col gap-12">
-        <h1 className="text-foreground leading-tight">
+        <h2 className="text-foreground leading-tight">
           <SplitText
             text={t("featured.title")}
             className="text-2xl md:text-4xl"
@@ -228,7 +228,7 @@ export default function FeaturedWork() {
             duration={0.6}
             initialY={50}
           />
-        </h1>
+        </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4">
           {/* Widget 1 — Websites (col-span-2, row-span-2) */}
@@ -317,6 +317,8 @@ export default function FeaturedWork() {
         className="absolute left-0 translate-y-full w-80 object-contain -scale-x-100 md:block hidden"
         src="/assets/littledog.webp"
         alt="perrito"
+        width={500}
+        height={500}
       />
 
       <StarPinkIcon
